@@ -1,0 +1,134 @@
+START
+    Display"Welcome to Cafe Kapal Laud"
+    CALL Function TabelMenu;
+    Display"Please select the menu category: "
+    Read category
+
+        IF category = "Food" THEN 
+        Display"Enter food code: "
+        Read foodcode
+        
+            IF code = A 
+            price = 5.00
+
+            IF code = AT
+            price = 6.00
+
+            IF code = ATC
+            price = 7.00
+
+
+            if code = D
+            price = 5.00
+
+            if code = DT
+            price = 6.00
+
+            if code = DTC
+            price = 7.00
+
+
+            if code = C
+            price = 13.95
+
+            if code = B
+            price = 13.95
+
+
+            if code = ABC
+            price = 7.00
+
+            if code = CSC
+            price = 9.00
+
+            if code = CTC
+            price = 9.00
+
+            if code = CP
+            price = 7.00
+
+            else
+            Display"Invalid code"
+
+
+        else if category = "Beverages" 
+
+            if code = CJ
+            price = 7.00
+
+            if code = AJ
+            price = 7.00
+
+            if code = WJ
+            price = 7.00
+
+            if code = HJ
+            price = 8.00
+
+            if code = OJ
+            price = 7.00
+
+            if code = AV
+            price = 8.00
+
+
+            if code = TC
+            Display "Enter Hot or Cold"
+                if opt = Hot
+                price = 4.50
+                if opt = Cold
+                price = 5.00 
+
+            if code = TO
+            Display "Enter Hot or Cold"
+                if opt = Hot
+                price = 3.50
+                if opt = Cold
+                price = 4.00  
+
+            if code = LT
+            Display "Enter Hot or Cold"
+                if opt = Hot
+                price = 4.50
+                if opt = Cold
+                price = 5.00  
+
+             if code = KO
+            Display "Enter Hot or Cold"
+                if opt = Hot
+                price = 3.50
+                if opt = Cold
+                price = 4.00 
+
+                else
+                Display "Invalid Code"
+
+        else 
+        Display"Invalid Category"
+
+        Display "Enter quantity"
+
+        Display"Do you want to add more or reset order"
+
+        total = price * quantity
+
+
+    desire Final output    
+
+    Food
+    1.Burger ayam + telur
+    2.Burger daging
+    3.Cream puff
+
+    Beverages
+    1.Carrot juice
+    2.Apple juice
+
+    Total: RM26.00
+
+
+    
+    
+    
+     
+
