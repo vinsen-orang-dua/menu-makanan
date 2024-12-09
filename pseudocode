@@ -52,6 +52,8 @@ START
 
 
         else if category = "Beverages" 
+        Display "Enter Beverages code: "
+        Read bvecode
 
             if code = CJ
             price = 7.00
@@ -104,11 +106,28 @@ START
                 Display "Invalid Code"
 
         else 
-        Display"Invalid Category"
+        Display"Invalid Category!! Please enter Again"
+        do
+        while category != "food" || category != "beverages"
+
+
 
         Display "Enter quantity"
 
+
+
         Display"Do you want to add more or reset order"
+
+        if opt2 == add
+        call function order
+
+        if opt2 == reset
+        system ('clear') 
+
+
+
+
+
 
         total = price * quantity
 
