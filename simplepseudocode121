@@ -4,25 +4,13 @@ START
 
     CALL Function TableMenu
 
-    DO
-
-    display"Enter Category: "
-    display"Enter Code: "
-    display"Enter quantity: "
-    Read category
-    Read code 
-    Read qty
+    CALL Function Order
 
     CALL Function calcPrice
 
-    display"Add order? [Y/N]"
-    Read option
-    WHILE option = Y
-    ENDDOWHILE
+    CALL Functinon Discount
 
-    display"Your order is: "
-    display"Total price: RM"
-    display"Your change: RM"
+    Call Function Output   
     
 
 END
