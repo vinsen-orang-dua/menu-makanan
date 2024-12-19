@@ -1,151 +1,17 @@
 START
     Display"Welcome to Cafe Kapal Laud"
-    CALL Function TabelMenu;
-    Display"Please select the menu category: "
-    Read category
-
-        IF category = "Food" THEN 
-        Display"Enter food code: "
-        Read foodcode
-        
-            IF code = A 
-            price = 5.00
-
-            IF code = AT
-            price = 6.00
-
-            IF code = ATC
-            price = 7.00
-
-
-            if code = D
-            price = 5.00
-
-            if code = DT
-            price = 6.00
-
-            if code = DTC
-            price = 7.00
-
-
-            if code = C
-            price = 13.95
-
-            if code = B
-            price = 13.95
-
-
-            if code = ABC
-            price = 7.00
-
-            if code = CSC
-            price = 9.00
-
-            if code = CTC
-            price = 9.00
-
-            if code = CP
-            price = 7.00
-
-            else
-            Display"Invalid code"
-
-
-        else if category = "Beverages" 
-        Display "Enter Beverages code: "
-        Read bvecode
-
-            if code = CJ
-            price = 7.00
-
-            if code = AJ
-            price = 7.00
-
-            if code = WJ
-            price = 7.00
-
-            if code = HJ
-            price = 8.00
-
-            if code = OJ
-            price = 7.00
-
-            if code = AV
-            price = 8.00
-
-
-            if code = TC
-            Display "Enter Hot or Cold"
-                if opt = Hot
-                price = 4.50
-                if opt = Cold
-                price = 5.00 
-
-            if code = TO
-            Display "Enter Hot or Cold"
-                if opt = Hot
-                price = 3.50
-                if opt = Cold
-                price = 4.00  
-
-            if code = LT
-            Display "Enter Hot or Cold"
-                if opt = Hot
-                price = 4.50
-                if opt = Cold
-                price = 5.00  
-
-             if code = KO
-            Display "Enter Hot or Cold"
-                if opt = Hot
-                price = 3.50
-                if opt = Cold
-                price = 4.00 
-
-                else
-                Display "Invalid Code"
-
-        else 
-        Display"Invalid Category!! Please enter Again"
-        do
-        while category != "food" || category != "beverages"
+    CALL Function TableMenu;
+    CALL Function Order;
+    CALL Function Change;
+    CALL Function Totalprice;
+    CALL Function Output;
+END
+   
 
 
 
-        Display "Enter quantity"
-
-
-
-        Display"Do you want to add more or reset order"
-
-        if opt2 == add
-        call function order
-
-        if opt2 == reset
-        system ('clear') 
-
-
-
-
-
-
-        total = price * quantity
-
-
-    desire Final output    
-
-    Food
-    1.Burger ayam + telur
-    2.Burger daging
-    3.Cream puff
-
-    Beverages
-    1.Carrot juice
-    2.Apple juice
-
-    Total: RM26.00
-
-    //TabelMenu 
+TableMenu ()
+DISPLAY: 
 ______________________________________________________________________________________________________________
 |  Category  |        Food             |      Price        |            |       Beverages       |    Price   |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
@@ -157,12 +23,12 @@ ________________________________________________________________________________
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
 |    ATC     |  Ayam + Telur + Cheese  |     RM 7.00       |     WJ     |   Watermelon Juice    |   RM 7.00  |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
-|     D      |        Daging           |     RM 5.00       |     HJ     |    Honeydew Juice     |   RM 8.00  |
+|     D      |        Burger Daging           |     RM 5.00       |     HJ     |    Honeydew Juice     |   RM 8.00  |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
-|    DT      |    Daging + Telur       |     RM 6.00       |     OJ     |     Orange Juice      |   RM 7.00  |
+|    DT      |    Burger Daging + Telur       |     RM 6.00       |     OJ     |     Orange Juice      |   RM 7.00  |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
-|    DTC     | Daging + Telur + Cheese |     RM 7.00       |     AV     |    Avocado Juice      |   RM 8.00  |
-|------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
+|    DTC     | Burger Daging + Telur + Cheese |     RM 7.00       |     AV     |    Avocado Juice      |   RM 8.00  |
+|------------|-------------------------|-------------------|------------|-----------------------|------------|--------------+
 |            |       [Spaghetti]       |                   |            |     [Minuman Lega]    |     Hot    |     Cold     |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
 |     C      |        Carbonara        |     RM 13.95      |     TC     |         Teh C         |   RM 4.50  |   RM 5.00    |
@@ -172,15 +38,223 @@ ________________________________________________________________________________
 |            |        [Dessert]        |                   |     LT     |       Lemon Tea       |   RM 4.50  |   RM 5.00    |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
 |     ABC    |           ABC           |     RM 7.00       |     KO     |        Kopi O         |   RM 3.50  |   RM 4.00    |
-|------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
+|------------|-------------------------|-------------------|------------|---------------------------------------------------+
 |     CSC    |       Cheese Cake       |     RM 9.00       | 
 |------------|-------------------------|-------------------|
 |     CTC    |     Chocolate Cake      |     RM 9.00       |
 |------------|-------------------------|-------------------|
 |     CP     |       Cream Puff        |     RM 7.00       | 
-|------------|-------------------------|-------------------|
++------------|-------------------------|-------------------+
     
     
-    
-     
+Order()
+     Display"Please select category: "
+     READ category
+        DO{
+        IF category = "Food" THEN 
+        DO{
+        Display"Enter food code: "
+        Display"Enter quantity: "
+        Display"Enter done IF you are done."
+        READ foodcode
+        READ qty
 
+
+            IF code = A 
+            name[i] = "Burger Ayam"
+            price = 5.00 * qty
+            i++
+
+            ELSE IF code = AT
+            name[i] = "Burger Ayam Telur"
+            price = 6.00 * qty
+            i++
+
+            ELSE IF code = ATC
+            name[i] = "Burger Ayam Telur Cheese"
+            price = 7.00 * qty
+            i++
+
+
+            ELSE IF code = D
+            name[i] = "Burger Daging"
+            price = 5.00 * qty
+            i++
+
+            ELSE IF code = DT
+            name[i] = "Burger Daging Telur"
+            price = 6.00 * qty
+            i++
+
+            ELSE IF code = DTC
+            name[i] = "Burger Daging Telur Cheese"
+            price = 7.00 * qty
+            i++
+
+            ELSE IF code = C
+            name[i] = "Spaghetti Carbornara"
+            price = 13.95 * qty
+            i++
+
+            ELSE IF code = B
+            name[i] = "Spaghetti Bolongnese"
+            price = 13.95 * qty
+            i++
+
+
+            ELSE IF code = ABC
+            name[i] = "ABC"
+            price = 7.00 * qty
+            i++
+
+            ELSE IF code = CSC
+            name[i] = "Cheese cake"
+            price = 9.00 * qty
+            i++
+
+            ELSE IF code = CTC
+            name[i] = " Cocolat Cake"
+            price = 9.00 * qty
+            i++
+
+            ELSE IF code = CP
+            name[i] = "Cream Puff"
+            price = 7.00 * qty
+            i++
+
+            ELSE
+            Display"Invalid code"
+
+
+        ELSE IF category = "Beverages" 
+        Display "Enter Beverages code: "
+        READ bvecode
+
+            IF code = CJ
+            name[i] = "Carrot Juice"
+            price = 7.00 * qty
+
+            ELSE IF code = AJ
+            name[i] = "Apple Juice"
+            price = 7.00 * qty
+
+            ELSE IF code = WJ
+            name[i] = "Watermelon Juice"
+            price = 7.00 * qty
+
+            ELSE IF code = HJ
+            name[i] = "Honeybabyronny"
+            price = 8.00 * qty
+
+            ELSE IF code = OJ
+            name[i] = "Orange Juice"
+            price = 7.00 * qty
+
+            ELSE IF code = AV
+            name[i] = "Avocado"
+            price = 8.00 * qty
+
+
+            ELSE IF code = TC
+            name[i] = "Tea C"
+            Display "Enter Hot or Cold"
+            READ temp
+                IF temp = Hot
+                price = 4.50 * qty
+                IF temp = Cold
+                price = 5.00 * qty
+
+            ELSE IF code = TO
+            name[i] = "Tea O"
+            Display "Enter Hot or Cold"
+            READ temp
+                IF temp = Hot
+                price = 3.50 * qty
+                IF temp = Cold
+                price = 4.00 * qty
+
+            ELSE IF code = LT
+            name[i] = "Lemon Tea"
+            Display "Enter Hot or Cold"
+            READ temp
+                IF temp = Hot
+                price = 4.50 * qty
+                IF temp = Cold
+                price = 5.00 * qty
+
+            ELSE IF code = KO
+            name[i] = "Kopi O"
+            Display "Enter Hot or Cold"
+            READ temp
+                IF temp = Hot
+                price = 3.50 * qty
+                IF temp = Cold
+                price = 4.00 * qty
+
+                ELSE
+                Display "Invalid Code"
+                ENDIF
+
+                tprice += price;
+
+        }WHILE opt != Done
+        ENDWHILE  
+
+        ELSE
+        Display"Invalid Category!! Please enter Again"
+        ENDIF
+    }WHILE category != "Food" || category != "Beverages"
+    ENDWHILE
+
+RETURN
+
+
+Totalprice(){
+
+    Display"Your total price is: RM",tprice
+        IF tprice > 40.0
+        Display"You have received a 10% discount"
+        tprice = tprice - (tprice * 0.1)
+    ENDIF
+
+    RETURN
+}
+
+Change(){
+
+    Display"Do you want to pay with"
+    Display "1. Cash"
+    Display "2. Credit"
+    Display "Enter your option: "
+    READ opt
+
+        
+        IF opt == 1
+        Display "Enter amount: RM"
+        ttprice = amt - tprice
+            IF ttprice > 0.0
+            Display "You have RM", ttprice "change."
+            Display "Please go to counter to collect your change."
+            ENDIF
+
+
+        ELSE IF opt == 2
+        Display "Receive 10% Discount"
+        Display"No change to collect."
+
+        ELSE 
+        Display "Invalid Option!! Please enter Again"
+        ENDIF
+RETURN
+}
+
+
+
+Output(){
+    Display "Your Order: "
+    Display "Food: "
+        for int j = 0; j<i; j++;
+        Display j+1,". ",name[j]
+    Display "Total Purchase: RM", tprice
+RETURN
+}     
