@@ -54,10 +54,11 @@ Order()
         IF category = "Food" THEN 
         DO{
         Display"Enter food code: "
-        Display"Enter quantity: "
-        Display"Enter done IF you are done."
         READ foodcode
+        Display"Enter quantity: "
         READ qty
+        Display"Enter done IF you are done."
+        READ opt
 
 
             IF code = A 
