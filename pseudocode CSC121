@@ -231,20 +231,23 @@ Change()
             IF Change > 0.0
                 Display "You have RM", Change, "change."
                 Display "Please go to counter to collect your change."
+                BREAK;
             ELSE
                 Display "No change to collect"
+                BREAK;
         ENDIF
 
         ELSE IF PaymentMethod == '2'
             Display "Receive 10% Discount"
             Display"No change to collect."
             tpurchase = tpurchase * 0.1
+            BREAK;
 
         ELSE 
         Display "Invalid Option!! Please enter Again"
         ENDIF
 
-    }WHILE PaymentMethod != '1' || PaymentMethod != '2'
+    }WHILE True
     END DO WHILE
 RETURN
 
