@@ -14,7 +14,7 @@ DISPLAY:
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
 |   Code     |       [Burger]          |                   |    Code    |    [Minuman Bujang]   |            |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
-|     A      |         Ayam            |     RM 5.00       |     CJ     |     Carrot Juice      |   RM 7.00  |
+|     A      |         Ayam            |     RM 5.00       |     OJ     |     Orange Juice      |   RM 7.00  |
 |------------|-------------------------|-------------------|------------|-----------------------|------------| 
 |     AT     |      Ayam + Telur       |     RM 6.00       |     AJ     |     Apple Juice       |   RM 7.00  |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
@@ -22,27 +22,26 @@ DISPLAY:
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
 |     D      |        Burger Daging    |     RM 5.00       |     HJ     |    Honeydew Juice     |   RM 8.00  |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|
-|     DT     |  Burger Daging + Telur  |     RM 6.00       |     OJ     |     Orange Juice      |   RM 7.00  |
-|------------|-------------------------|-------------------|------------|-----------------------|------------|
-|     DTC    |  Burger Daging + Telur  |     RM 7.00       |     AV     |    Avocado Juice      |   RM 8.00  |
-|            |       + Cheese          |                   |            |                       |            |
+|     DT     |  Burger Daging + Telur  |     RM 6.00       |     AV     |    Avocado Juice      |   RM 8.00  |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------+
-|            |       [Spaghetti]       |                   |            |     [Minuman Lega]    |     Hot    |     Cold     |
+|     DTC    |  Burger Daging + Telur  |     RM 7.00       |            |    [Minuman Lega]     |     Hot    |     Cold     |
+|            |       + Cheese          |                   |            |                       |            |              |
+|------------|-------------------------|-------------------|------------|-----------------------|------------|--------------+
+|            |       [Spaghetti]       |                   |     TC     |         Teh C         |   RM 4.50  |   RM 5.00    |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
-|      C     |        Carbonara        |     RM 13.95      |     TC     |         Teh C         |   RM 4.50  |   RM 5.00    |
+|      C     |        Carbonara        |     RM 13.95      |     TO     |         Teh O         |   RM 3.50  |   RM 4.00    |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
-|      B     |        Bolognese        |     RM 13.95      |     TO     |         Teh O         |   RM 3.50  |   RM 4.00    |
+|      B     |        Bolognese        |     RM 13.95      |     LT     |       Lemon Tea       |   RM 4.50  |   RM 5.00    |
 |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
-|            |        [Dessert]        |                   |     LT     |       Lemon Tea       |   RM 4.50  |   RM 5.00    |
-|------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|
-|     ABC    |           ABC           |     RM 7.00       |     KO     |        Kopi O         |   RM 3.50  |   RM 4.00    |
+|            |        [Dessert]        |                   |     KO     |        Kopi O         |   RM 3.50  |   RM 4.00    |
 |------------|-------------------------|-------------------|----------------------------------------------------------------+
+|     ABC    |           ABC           |     RM 7.00       |     
+|------------|-------------------------|-------------------|
 |     CSC    |       Cheese Cake       |     RM 9.00       | 
 |------------|-------------------------|-------------------|
 |     CTC    |     Chocolate Cake      |     RM 9.00       |
-|------------|-------------------------|-------------------|
-|     CP     |       Cream Puff        |     RM 7.00       | 
 +----------------------------------------------------------+
+
 
 
 Order()
@@ -89,12 +88,12 @@ Order()
               i++
 
            ELSE IF Foodcode == 'C'
-              name[i] = "Spaghetti Carbornara"
+              name[i] = "Spaghetti Carbonara"
               price = 13.95 * qty
               i++
 
            ELSE IF FoodCode == 'B'
-              name[i] = "Spaghetti Bolongnese"
+              name[i] = "Spaghetti Bolognese"
               price = 13.95 * qty
               i++
 
@@ -113,11 +112,6 @@ Order()
               price = 9.00 * qty
               i++
 
-           ELSE IF FoodCode == "CP"
-              name[i] = "Cream Puff"
-              price = 7.00 * qty
-              i++
-
            ELSE
               Display "Food Code not available"
 
@@ -129,12 +123,7 @@ Order()
            Display "Enter done if you have finished."
            Read opt
 
-           IF bvgCode == "CJ"
-              name[i] = "Carrot Juice"
-              price = 7.00 * qty
-              i++
-
-           ELSE IF bvCode = "AJ"
+           IF bvCode = "AJ"
               name[i] = "Apple Juice"
               price = 7.00 * qty
               i++
@@ -163,11 +152,11 @@ Order()
               Display "Enter Hot or Cold"
               READ temp
               IF temp == "Hot"
-                name[i] = "Tea C Hot"
+                name[i] = "Teh C Hot"
                 price = 4.50 * qty
                 i++
               ELSE IF temp == "Cold"
-                name[i] = "Tea C Cold"
+                name[i] = "Teh C Cold"
                 price = 5.00 * qty
                 i++
 
@@ -175,11 +164,11 @@ Order()
               Display "Enter Hot or Cold"
               READ temp
               IF temp == "Hot"
-                name[i] = "Tea O Hot"
+                name[i] = "Teh O Hot"
                 price = 3.50 * qty
                 i++
               ELSE IF temp == "Cold"
-                name[i] = "Tea O Cold"
+                name[i] = "Teh O Cold"
                 price = 4.00 * qty
                 i++
 
