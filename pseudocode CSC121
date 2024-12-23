@@ -46,11 +46,13 @@ DISPLAY:
 
 
 Order()
-     DO{
+
      Display "Start Order?(Yes/No): "
      Read opt
      IF opt == "Yes" 
-        Display "Please select category (Food/Beverages): "
+        DO{
+        Display "Please select category (Food/Beverages)
+                Enter comfirm to get your recipt : "
         READ category
         IF category == "Food" THEN 
            DO{
@@ -207,9 +209,9 @@ Order()
         ENDIF
     
     }WHILE category != "Food" || category != "Beverages"
+    END DO WHILE
      ELSE
         Display "Thank you for purchasing"
-    END DO WHILE
 RETURN
 
 
