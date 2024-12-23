@@ -46,13 +46,9 @@ DISPLAY:
 
 
 Order()
-
-     Display "Start Order?(Yes/No): "
-     Read opt
-     IF opt == "Yes" 
         DO{
         Display "Please select category (Food/Beverages)
-                Enter comfirm to get your recipt : "
+        Enter comfirm to get your recipt : "
         READ category
         IF category == "Food" THEN 
            DO{
@@ -127,7 +123,7 @@ Order()
 
            END IF
 
-        IF category == "Beverages" 
+        ELSE IF category == "Beverages" 
            Display "Enter Beverages code and quantity: "
            READ bvgCode, qty
            Display "Enter done if you have finished."
@@ -203,15 +199,12 @@ Order()
            }WHILE opt != "Done"
            END DO WHILE  
         
- 
         ELSE
         Display "Invalid Category!! Please enter Again"
         ENDIF
     
     }WHILE category != "Food" || category != "Beverages"
     END DO WHILE
-     ELSE
-        Display "Thank you for purchasing"
 RETURN
 
 
@@ -225,9 +218,10 @@ RETURN
 
 
 Change()
+    DO{
     Display "Choose your payment method:"
     Display "1. Cash"
-    Display "2. Credit"
+    Display "2. Credit Card"
     Read PaymentMethod
 
         IF PaymentMethod == '1'
@@ -244,11 +238,14 @@ Change()
         ELSE IF PaymentMethod == '2'
             Display "Receive 10% Discount"
             Display"No change to collect."
+            tpurchase = tpurchase * 0.1
 
         ELSE 
         Display "Invalid Option!! Please enter Again"
-
         ENDIF
+
+    }WHILE PaymentMethod != '1' || PaymentMethod != '2'
+    END DO WHILE
 RETURN
 
 
