@@ -3,8 +3,8 @@ START
     CALL Function TableMenu()
     CALL Function Order()
     CALL Function TotalPurchase()
-    CALL Function Change()
     CALL Function Output()
+    CALL Function Change()
 END
 
 TableMenu()
@@ -48,7 +48,7 @@ DISPLAY:
 Order()
         DO{
         Display "Please select category (Food/Beverages)
-        Enter comfirm to get your recipt : "
+        Enter confirm to get your receipt : "
         READ category
         IF category == "Food" THEN 
            DO{
@@ -218,7 +218,6 @@ RETURN
 
 
 Change()
-    
     Display "Choose your payment method:"
     Display "1. Cash"
     Display "2. Credit Card"
@@ -255,9 +254,7 @@ RETURN
 
 Output()
     Display "Your Order: "
-    Display "Food: "
-        for int j = 0; j<i; j++;
+        for int j=0; j<i; j++;
         Display j+1,". ", name[j]
     Display "Total Purchase: RM", tpurchase
-    Display ""
 RETURN
