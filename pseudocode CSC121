@@ -218,11 +218,12 @@ RETURN
 
 
 Change()
-    DO{
+    
     Display "Choose your payment method:"
     Display "1. Cash"
     Display "2. Credit Card"
-    Read PaymentMethod
+    DO{
+    READ PaymentMethod
 
         IF PaymentMethod == '1'
             Display "Enter amount: RM"
@@ -244,7 +245,7 @@ Change()
             BREAK;
 
         ELSE 
-        Display "Invalid Option!! Please enter Again"
+        Display "Invalid Option!! Please enter Again: "
         ENDIF
 
     }WHILE True
