@@ -132,62 +132,80 @@ Order()
            IF bvgCode == "CJ"
               name[i] = "Carrot Juice"
               price = 7.00 * qty
+              i++
 
            ELSE IF bvCode = "AJ"
               name[i] = "Apple Juice"
               price = 7.00 * qty
+              i++
 
            ELSE IF bvgCode == "WJ"
               name[i] = "Watermelon Juice"
               price = 7.00 * qty
+              i++
 
            ELSE IF bvgCode == "HJ"
               name[i] = "Honeydew Juice"
               price = 8.00 * qty
+              i++
 
            ELSE IF bvgCode == "OJ"
               name[i] = "Orange Juice"
               price = 7.00 * qty
+              i++
 
            ELSE IF bvgCode = "AV"
               name[i] = "Avocado Juice"
               price = 8.00 * qty
+              i++
 
            ELSE IF bvgCode == "TC"
-              name[i] = "Tea C"
               Display "Enter Hot or Cold"
               READ temp
               IF temp == "Hot"
+                name[i] = "Tea C Hot"
                 price = 4.50 * qty
+                i++
               ELSE IF temp == "Cold"
+                name[i] = "Tea C Cold"
                 price = 5.00 * qty
+                i++
 
            ELSE IF bvgCode == "TO"
-              name[i] = "Tea O"
               Display "Enter Hot or Cold"
               READ temp
               IF temp == "Hot"
+                name[i] = "Tea O Hot"
                 price = 3.50 * qty
+                i++
               ELSE IF temp == "Cold"
+                name[i] = "Tea O Cold"
                 price = 4.00 * qty
+                i++
 
            ELSE IF code = LT
-              name[i] = "Lemon Tea"
               Display "Enter Hot or Cold"
               READ temp
               IF temp == "Hot"
+                name[i] = "Lemon Tea Hot"
                 price = 4.50 * qty
+                i++
               ELSE IF temp == "Cold"
+                name[i] = "Lemon Tea Cold"
                 price = 5.00 * qty
+                i++
 
            ELSE IF code = KO
-              name[i] = "Kopi O"
               Display "Enter Hot or Cold"
               READ temp
               IF temp == "Hot"
+                name[i] = "Kopi O Hot"
                 price = 3.50 * qty
+                i++
               ELSE IF temp == "Cold"
+                name[i] = "Kopi O Cold"
                 price = 4.00 * qty
+                i++
 
            ELSE
               Display "Beverage Code not available"
@@ -215,6 +233,15 @@ TotalPurchase()
         tpurchase = tprice - (tprice * 0.1)
     ENDIF
 RETURN
+
+
+Output()
+    Display "Your Order: "
+        for int j=0; j<i; j++;
+        Display j+1,". ", name[j]
+    Display "Total Purchase: RM", tpurchase
+RETURN
+
 
 
 Change()
@@ -249,12 +276,4 @@ Change()
 
     }WHILE True
     END DO WHILE
-RETURN
-
-
-Output()
-    Display "Your Order: "
-        for int j=0; j<i; j++;
-        Display j+1,". ", name[j]
-    Display "Total Purchase: RM", tpurchase
 RETURN
