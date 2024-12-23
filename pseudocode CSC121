@@ -46,15 +46,16 @@ DISPLAY:
 
 
 Order()
-     Display"Please select category (Food/Beverages): "
-     READ category
      DO{
+     Display "Start Order?(Yes/No): "
+     Read opt
+     IF opt == "Yes" 
+        Display "Please select category (Food/Beverages): "
+        READ category
         IF category == "Food" THEN 
            DO{
            Display"Enter food code and quantity: "
            READ FoodCode, qty
-           Display "Enter 'Beverage' if you want to order beverages."
-           Read category
            Display"Enter done if you have finished."
            READ opt
 
@@ -197,18 +198,18 @@ Order()
 
                 tprice += price;
 
-        }WHILE opt != Done
-        END DO WHILE  
-
+           }WHILE opt != "Done"
+           END DO WHILE  
+        
+ 
         ELSE
         Display "Invalid Category!! Please enter Again"
         ENDIF
-
+    
     }WHILE category != "Food" || category != "Beverages"
-    Display "Enter done if you have finished."
-    Read opt
+     ELSE
+        Display "Thank you for purchasing"
     END DO WHILE
-
 RETURN
 
 
