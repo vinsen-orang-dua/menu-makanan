@@ -236,7 +236,7 @@ RETURN
 Change()
     Display "Choose your payment method:"
     Display "1. Cash"
-    Display "2. Credit Card"
+    Display "2. Debit Card"
     DO{
     READ PaymentMethod
 
