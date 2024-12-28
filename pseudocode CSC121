@@ -59,57 +59,68 @@ Order()
            IF FoodCode == 'A' 
               name[i] = "Burger Ayam"
               price = 5.00 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == "AT"
               name[i] = "Burger Ayam Telur"
               price = 6.00 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == "ATC"
               name[i] = "Burger Ayam Telur Cheese"
               price = 7.00 * qty
+              tprice += price
               i++
 
 
            ELSE IF FoodCode == 'D'
               name[i] = "Burger Daging"
               price = 5.00 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == "DT"
               name[i] = "Burger Daging Telur"
               price = 6.00 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == "DTC"
               name[i] = "Burger Daging Telur Cheese"
               price = 7.00 * qty
+              tprice += price
               i++
 
            ELSE IF Foodcode == 'C'
               name[i] = "Spaghetti Carbonara"
               price = 13.95 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == 'B'
               name[i] = "Spaghetti Bolognese"
               price = 13.95 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == "ABC"
               name[i] = "Ais Batu Campur"
               price = 7.00 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == "CSC"
               name[i] = "Cheese cake"
               price = 9.00 * qty
+              tprice += price
               i++
 
            ELSE IF FoodCode == "CTC"
               name[i] = "Chocolate Cake"
               price = 9.00 * qty
+              tprice += price
               i++
 
            ELSE
@@ -126,26 +137,31 @@ Order()
            IF bvCode = "AJ"
               name[i] = "Apple Juice"
               price = 7.00 * qty
+              tprice += price
               i++
 
            ELSE IF bvgCode == "WJ"
               name[i] = "Watermelon Juice"
               price = 7.00 * qty
+              tprice += price
               i++
 
            ELSE IF bvgCode == "HJ"
               name[i] = "Honeydew Juice"
               price = 8.00 * qty
+              tprice += price
               i++
 
            ELSE IF bvgCode == "OJ"
               name[i] = "Orange Juice"
               price = 7.00 * qty
+              tprice += price
               i++
 
            ELSE IF bvgCode = "AV"
               name[i] = "Avocado Juice"
               price = 8.00 * qty
+              tprice += price
               i++
 
            ELSE IF bvgCode == "TC"
@@ -154,11 +170,13 @@ Order()
               IF temp == "Hot"
                 name[i] = "Teh C Hot"
                 price = 4.50 * qty
+                tprice += price
                 i++
               ELSE IF temp == "Cold"
                 name[i] = "Teh C Cold"
                 price = 5.00 * qty
-                i++
+                tprice += price
+                i+=
 
            ELSE IF bvgCode == "TO"
               Display "Enter Hot or Cold"
@@ -166,10 +184,12 @@ Order()
               IF temp == "Hot"
                 name[i] = "Teh O Hot"
                 price = 3.50 * qty
+                tprice += price
                 i++
               ELSE IF temp == "Cold"
                 name[i] = "Teh O Cold"
                 price = 4.00 * qty
+                tprice += price
                 i++
 
            ELSE IF code = LT
@@ -178,10 +198,12 @@ Order()
               IF temp == "Hot"
                 name[i] = "Lemon Tea Hot"
                 price = 4.50 * qty
+                tprice += price
                 i++
               ELSE IF temp == "Cold"
                 name[i] = "Lemon Tea Cold"
                 price = 5.00 * qty
+                tprice += price
                 i++
 
            ELSE IF code = KO
@@ -190,18 +212,18 @@ Order()
               IF temp == "Hot"
                 name[i] = "Kopi O Hot"
                 price = 3.50 * qty
+                tprice += price
                 i++
               ELSE IF temp == "Cold"
                 name[i] = "Kopi O Cold"
                 price = 4.00 * qty
+                tprice += price
                 i++
 
            ELSE
               Display "Beverage Code not available"
 
            ENDIF
-
-                tprice += price;
 
            }WHILE opt != "Done"
            END DO WHILE  
@@ -228,7 +250,7 @@ Output()
     Display "Your Order: "
         for int j=0; j<i; j++;
         Display j+1,". ", name[j]
-    Display "Total Purchase: RM", tpurchase
+    Display "Total Purchase: RM", tprice
 RETURN
 
 
@@ -239,24 +261,33 @@ Change()
     Display "2. Debit Card"
     DO{
     READ PaymentMethod
-
+     
         IF PaymentMethod == '1'
             Display "Enter amount: RM"
+            DO
             Read amt
-            Change = amt - tpurchase
-            IF Change > 0.0
-                Display "You have RM", Change, "change."
-                Display "Please go to counter to collect your change."
-                BREAK;
-            ELSE
+               IF amt < tprice
+                  Display "Insufficient amount.Please enter again: "
+
+
+               ELSE IF amt > tprice
+                  Change = amt - tpurchase
+                     IF Change > 0.0
+                        Display "You have RM", Change, "change."
+                        Display "Please go to counter to collect your change."
+                     BREAK;
+            ELSE IF change == 0.0
                 Display "No change to collect"
                 BREAK;
         ENDIF
+            WHILE TRUE
+            END DO WHILE
+        BREAK
 
         ELSE IF PaymentMethod == '2'
             Display "Receive 10% Discount"
             Display"No change to collect."
-            tpurchase = tpurchase * 0.1
+            tprice = tprice - (tprice * 0.1)
             BREAK;
 
         ELSE 
