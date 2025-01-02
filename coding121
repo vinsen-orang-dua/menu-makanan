@@ -11,7 +11,7 @@ int main(){
 
 
 
-    cout<<"Welcome to Cafe Kapal Laud: "<<endl;
+    cout<<"Welcome to Cafe iapal Laud: "<<endl;
     cout<<" +------------------------------------------------------------------------------------------------------------+"<<endl;
     cout<<" |  Category  |        Food             |      Price        |            |       Beverages       |    Price   |"<<endl;
     cout<<" |------------|-------------------------|-------------------|------------|-----------------------|------------|"<<endl;
@@ -36,13 +36,13 @@ int main(){
     cout<<" |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|"<<endl;
     cout<<" |      B     |        Bolognese        |     RM 13.95      |     LT     |       Lemon Tea       |   RM 4.50  |   RM 5.00    |"<<endl;
     cout<<" |------------|-------------------------|-------------------|------------|-----------------------|------------|--------------|"<<endl;
-    cout<<" |            |        [Dessert]        |                   |     KO     |        Kopi O         |   RM 3.50  |   RM 4.00    |"<<endl;
+    cout<<" |            |        [Dessert]        |                   |     iO     |        iopi O         |   RM 3.50  |   RM 4.00    |"<<endl;
     cout<<" |------------|-------------------------|-------------------|----------------------------------------------------------------+"<<endl;
     cout<<" |     ABC    |           ABC           |     RM 7.00       | "<<endl;    
     cout<<" |------------|-------------------------|-------------------|"<<endl;
-    cout<<" |     CSC    |       Cheese Cake       |     RM 9.00       | "<<endl;
+    cout<<" |     CSC    |       Cheese Caie       |     RM 9.00       | "<<endl;
     cout<<" |------------|-------------------------|-------------------|"<<endl;
-    cout<<" |     CTC    |     Chocolate Cake      |     RM 9.00       |"<<endl;
+    cout<<" |     CTC    |     Chocolate Caie      |     RM 9.00       |"<<endl;
     cout<<" +----------------------------------------------------------+"<<endl;
 
 
@@ -62,25 +62,28 @@ int main(){
             do{
                 cout<<"Code: ";
                 cin>>fudcod;
-                if (fudcod == "done"){break;}
-
-                cout<<"Quantity: ";
-                cin>>qty;
+            if (fudcod == "done"){break;}
 
                 
             if(fudcod == "A"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Burger Ayam";
                 price = 5.00 * qty;
                 tprice += price;
                 i++;
             }
             else if(fudcod == "AT"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Burger Ayam Telur";
                 price = 6.00 * qty;
                 tprice += price;
                 i++;
             }
             else if (fudcod == "ATC"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Burger Ayam Telur Cheese";
                 price = 7.00 * qty;
                 tprice += price;
@@ -88,12 +91,16 @@ int main(){
 
             }
             else if (fudcod == "D"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Burger Daging";
                 price = 5.00 * qty;
                 tprice += price;
                 i++;
             }
             else if (fudcod == "DT"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Burger Daging Telur";
                 price = 6.00 * qty;
                 tprice += price;
@@ -101,6 +108,8 @@ int main(){
 
             }
             else if (fudcod == "DTC"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Burger Daging Telur Cheese";
                 price = 7.00 * qty;
                 tprice += price;
@@ -108,31 +117,41 @@ int main(){
 
             }
             else if (fudcod == "C"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Spaghetti Carbonara";
                 price = 13.95 * qty;
                 tprice += price;
                 i++;
             }
             else if (fudcod == "B"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Spaghetti Bolognese" ;   
                 price = 13.95 * qty;
                 tprice += price;
                 i++;
             }
             else if (fudcod == "ABC"){
+                cout<<"Quantity: ";
+                cin>>qty;
                 name[i] = "Ais Batu Campur";
                 price = 7.00 * qty;
                 tprice += price;
                 i++;
             }
             else if (fudcod == "CSC"){
-                name[i] = "Cheese cake";
+                cout<<"Quantity: ";
+                cin>>qty;
+                name[i] = "Cheese caie";
                 price = 9.00 * qty;
                 tprice += price;
                 i++;
             }
             else if (fudcod == "CTC"){
-                name[i] = "Chocolate Cake";
+                cout<<"Quantity: ";
+                cin>>qty;
+                name[i] = "Chocolate Caie";
                 price = 9.00 * qty;
                 tprice += price;
                 i++;
@@ -152,18 +171,20 @@ int main(){
                 cin>>fudcod;
 
                 if (fudcod == "done"){break;}
-                cout<<"Quantity: ";
-                cin>>qty;
 
 
 
                 if (fudcod == "AJ"){
+                    cout<<"Quantity: ";
+                    cin>>qty;
                     name[i] = "Apple Juice";
                     price = 7.00 * qty;
                     tprice += price;
                     i++;
                 }
                 else if (fudcod == "WJ"){
+                    cout<<"Quantity: ";
+                    cin>>qty;
                     name[i] = "Watermelon Juice";
                     price = 7.00 * qty;
                     tprice += price;
@@ -171,6 +192,8 @@ int main(){
 
                 }
                 else if (fudcod == "HJ"){
+                    cout<<"Quantity: ";
+                    cin>>qty;
                     name[i] = "Honeydew Juice";
                     price = 8.00 * qty;
                     tprice += price;
@@ -178,6 +201,8 @@ int main(){
                     
                 }
                 else if (fudcod == "OJ"){
+                    cout<<"Quantity: ";
+                    cin>>qty;
                     name[i] = "Orange Juice";
                     price = 7.00 * qty;
                     tprice += price;
@@ -185,6 +210,8 @@ int main(){
                     
                 }
                 else if (fudcod == "AV"){
+                    cout<<"Quantity: ";
+                    cin>>qty;
                     name[i] = "Avocado Juice";
                     price = 8.00 * qty;
                     tprice += price;
@@ -194,13 +221,17 @@ int main(){
                 else if (fudcod == "TC"){
                     cout<<"Enter hot or cold: ";
                     cin>>temp;
-                    if (temp == "Hot"){
+                    if (temp == "hot"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Teh C Hot";
                         price = 4.50 * qty;
                         tprice += price;
                         i++;
                     }
-                    else if (temp == "Cold"){
+                    else if (temp == "cold"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Teh C Cold";
                         price = 5.00 * qty;
                         tprice += price;
@@ -210,13 +241,17 @@ int main(){
                 else if (fudcod == "TO"){
                     cout<<"Enter hot or cold: ";
                     cin>>temp;
-                    if (temp == "Hot"){
+                    if (temp == "hot"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Teh O Hot";
                         price = 3.50 * qty;
                         tprice += price;
                         i++;
                     }
-                    else if (temp == "Cold"){
+                    else if (temp == "cold"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Teh O Cold";
                         price = 4.00 * qty;
                         tprice += price;
@@ -227,13 +262,17 @@ int main(){
                 else if (fudcod == "LT"){
                     cout<<"Enter hot or cold: ";
                     cin>>temp;
-                    if (temp == "Hot"){
+                    if (temp == "hot"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Lemon Tea Hot";
                         price = 4.50 * qty;
                         tprice += price;
                         i++;
                     }
-                    else if (temp == "Cold"){
+                    else if (temp == "cold"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Lemon Tea Cold";
                         price = 5.00 * qty;
                         tprice += price;
@@ -244,13 +283,17 @@ int main(){
                 else if (fudcod == "KO"){
                     cout<<"Enter hot or cold: ";
                     cin>>temp;
-                    if (temp == "Hot"){
+                    if (temp == "hot"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Kopi O Hot";
                         price = 3.50 * qty;
                         tprice += price;
                         i++;
                     }
-                    else if (temp == "Cold"){
+                    else if (temp == "cold"){
+                        cout<<"Quantity: ";
+                        cin>>qty;
                         name[i] = "Kopi O Cold";
                         price = 4.00 * qty;
                         tprice += price;
