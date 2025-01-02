@@ -49,8 +49,8 @@ Order()
         Display "Please select category (Food/Beverages)
         Enter confirm to get your receipt : "
         READ category
+        DO{
         IF category == "Food" THEN 
-           DO{
            Display"Enter food code and quantity: "
            READ FoodCode, qty
            Display"Enter done if you have finished."
