@@ -58,9 +58,9 @@ void mainMenu(){
     char userType;
     do{
         cout << "\n+---------------------------------------+" << endl;
-        cout << "| [1] |   Customer Login                |" << endl;
+        cout << "| [1] |   Admin Login                   |" << endl;
         cout << "+---------------------------------------+" << endl;
-        cout << "| [2] |   Admin Login                   |" << endl;
+        cout << "| [2] |   Customer Login                |" << endl;
         cout << "+---------------------------------------+" << endl;
         cout << "| [3] |   Exit                          |" << endl;
         cout << "+---------------------------------------+" << endl;
