@@ -12,14 +12,18 @@ Purpose: Prepare a more efficient method of ordering.
 #include <iostream>
 #include <string>
 #include <iomanip> //for setprecision
+#include <cctype> //toupper function
 using namespace std;
 
 // Function Prototypes
+void greetings();
 void TableMenu();
 void Order(string name[], double &tprice, int &i);
 void TotalPurchase(double &tprice);
 void Output(string name[], double tprice, int i);
 void Change(double tprice);
+void adminMenu();
+void mainMenu();
 
 int main()
 {
@@ -27,14 +31,55 @@ int main()
     double tprice = 0.0; //Total price
     int i = 0; //Counter for items
 
-    cout<<"Welcome to Cafe Kapal Laud!!!"<<endl;
-    TableMenu(); //Display lists of menus
-    Order(name, tprice, i); //Take order from customer
-    TotalPurchase(tprice); //Calculate total price & apply discount
-    Output(name, tprice, i); //Display the order details
-    Change(tprice); //Handle payment method and calculate change if have
+    greetings(); //Welcome and login UI for admin and customer
+    mainMenu();
+    //TableMenu(); //Display lists of menus
+    //Order(name, tprice, i); //Take order from customer
+    //TotalPurchase(tprice); //Calculate total price & apply discount
+    //Output(name, tprice, i); //Display the order details
+    //Change(tprice); //Handle payment method and calculate change if have
 
     return 0;
+}
+
+//loginUI Funciton
+
+void greetings(){
+    char key;
+    char userType;
+    cout << "+----------------------------------------+" << endl;
+    cout << "|     WELCOME   TO   CAFE KAPAL LAUD     |" << endl;
+    cout << "+----------------------------------------+" << endl;
+    cout << "Press any key to continue..." << endl;
+    cin >> key;
+}
+
+void mainMenu(){
+    char userType;
+    do{
+        cout << "\n+---------------------------------------+" << endl;
+        cout << "| [1] |   Customer Login                |" << endl;
+        cout << "+---------------------------------------+" << endl;
+        cout << "| [2] |   Admin Login                   |" << endl;
+        cout << "+---------------------------------------+" << endl;
+        cout << "| [3] |   Exit                          |" << endl;
+        cout << "+---------------------------------------+" << endl;
+        cout << "Please enter number to continue: ";
+        cin >> userType;
+
+        if (userType == '1'){
+        cout << "admin login" << endl;
+        }
+        else if (userType == '2'){
+        TableMenu();
+        }
+        else if (userType == '3'){
+        cout << "Exit";
+        }
+        else{
+            cout << "Incorrect" << endl;
+        }
+    }while (userType != '1' && userType != '2' && userType != '3');
 }
 
 //TableMenu Function
@@ -78,7 +123,8 @@ void Order(string name[], double &tprice, int &i)
         cout << "Please select category (Food / Beverages): " << endl;
         cout << "Enter CONFIRM to get your receipt: " << endl;
         cin >> category;
-        if (category == "Food")
+        // category = toupper(category);
+        if (category == "FOOD")
         {
             cout << "\nEnter food code and quantity. " << endl;
             cout << "Enter DONE if you have finished. " << endl
