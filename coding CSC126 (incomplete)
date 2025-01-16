@@ -223,20 +223,25 @@ void Output(string name[], double tprice, int i)
 }
 
 // Function: Calculate Change
-void Change(double tprice)
+void Change(double &tprice)
 {
-    double amt, change=0.0;
-    char opt;
+    string paymentMethod;
+    double payment, amt, change;
 
-    cout << "\nChoose your Payment Method. " << endl;
-    cout << "1.Cash" << endl;
-    cout << "2.Debit" << endl;
-    cout << "Enter 1 or 2: ";
-    do
+    cout << "\nEnter payment method (CASH / DEBIT): ";
+    cin >> paymentMethod;
+    paymentMethod = toUpperCase(paymentMethod);
+
+    do{
+    if (paymentMethod == "CASH" || paymentMethod == "DEBIT")
     {
-        cin >> opt;
+        if (paymentMethod == "DEBIT" && tprice >= 30.0)
+        {
+            cout << "You have received a 5% debit discount!" << endl;
+            tprice -= tprice * 0.05;
+        }
 
-        if (opt == '1')
+        if (paymentMethod == "CASH")
         {
             cout << "\nEnter amount: RM";
             do
@@ -264,22 +269,12 @@ void Change(double tprice)
             } while (true);
             break;
         }
-
-        else if (opt == '2')
-        {
-            tprice = tprice - (tprice * 0.1);
-            cout<<fixed<<setprecision(2);
-            cout << "\a\nReceive 10% Discount" << endl;
-            cout << "Total Price: RM" << tprice << endl;
-            cout << "No change to collect.";
-            break;
-        }
-        else
-        {
-            cout << "\nInvalid Option!! Please enter Again: ";
-        }
-
-    } while (true);
+    }
+    else
+    {
+        cout << "Invalid payment method. Try again." << endl;
+    }
+    }while(paymentMethod != "CASH" &&  paymentMethod != "DEBIT");
 }
 
 // Helper Function: Convert to Upper Case
