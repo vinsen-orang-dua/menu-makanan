@@ -39,8 +39,8 @@ int main()
 
     //Order(name, tprice, i); //Take order from customer
     //TotalPurchase(tprice); //Calculate total price & apply discount
-    Output(name, tprice, i); //Display the order details
-    Change(tprice); //Handle payment method and calculate change if have
+    //Output(name, tprice, i); //Display the order details
+    //Change(tprice); //Handle payment method and calculate change if have
     return 0;
 }
 
@@ -195,16 +195,6 @@ void Order(string name[], double &tprice, int &i)
     } while (category != "CONFIRM");
 }
 
-// Function: Calculate Total Purchase
-void TotalPurchase(double &tprice)
-{
-    if (tprice > 40.0)
-    {
-        cout << fixed << setprecision(2);
-        cout << "You have received a 10% discount!" << endl;
-        tprice -= tprice * 0.1;
-    }
-}
 
 // Function: Output Order Details
 void Output(string name[], double tprice, int i)
@@ -216,32 +206,47 @@ void Output(string name[], double tprice, int i)
     for (int j = 0; j < i; j++)
     {
         cout << name[j] << endl;
-    }
-
+    }  
     TotalPurchase(tprice);
     cout << "\nTotal Price: RM " << fixed << setprecision(2) << tprice << endl;
 }
 
+// Function: Calculate Total Purchase
+void TotalPurchase(double &tprice)
+{
+    cout << "\nTotal before discount: RM " << fixed << setprecision(2) << tprice << endl;
+
+    if (tprice > 40.0)
+    {
+        double discount = tprice * 0.1;  // Calculate 10% discount
+        tprice -= discount;  // Apply the discount
+        cout << "You have received a 10% discount!" << endl;
+        cout << "Discount: RM " << fixed << setprecision(2) << discount << endl;
+    }
+    else
+    {
+        cout << "No discount applied." << endl;
+    }
+
+    cout << "Total Price after discount: RM " << fixed << setprecision(2) << tprice << endl;
+}
+
+
 // Function: Calculate Change
 void Change(double &tprice)
 {
-    string paymentMethod;
-    double payment, amt, change;
+    double amt, change=0.0;
+    char opt;
 
-    cout << "\nEnter payment method (CASH / DEBIT): ";
-    cin >> paymentMethod;
-    paymentMethod = toUpperCase(paymentMethod);
-
-    do{
-    if (paymentMethod == "CASH" || paymentMethod == "DEBIT")
+    cout << "\nChoose your Payment Method. " << endl;
+    cout << "1.Cash" << endl;
+    cout << "2.Debit" << endl;
+    cout << "Enter 1 or 2: ";
+    do
     {
-        if (paymentMethod == "DEBIT" && tprice >= 30.0)
-        {
-            cout << "You have received a 5% debit discount!" << endl;
-            tprice -= tprice * 0.05;
-        }
+        cin >> opt;
 
-        if (paymentMethod == "CASH")
+        if (opt == '1')
         {
             cout << "\nEnter amount: RM";
             do
@@ -261,7 +266,7 @@ void Change(double &tprice)
                         break;
                     }
                 }
-                else if (amt = tprice)
+                else if (amt == tprice)
                 {
                     cout << "\n\aNo change to collect";
                     break;
@@ -269,12 +274,22 @@ void Change(double &tprice)
             } while (true);
             break;
         }
-    }
-    else
-    {
-        cout << "Invalid payment method. Try again." << endl;
-    }
-    }while(paymentMethod != "CASH" &&  paymentMethod != "DEBIT");
+
+        else if (opt == '2')
+        {
+            tprice = tprice - (tprice * 0.1);
+            cout<<fixed<<setprecision(2);
+            cout << "\a\nReceive 10% Discount" << endl;
+            cout << "Total Price: RM" << tprice << endl;
+            cout << "No change to collect.";
+            break;
+        }
+        else
+        {
+            cout << "\nInvalid Option!! Please enter Again: ";
+        }
+
+    } while (true);
 }
 
 // Helper Function: Convert to Upper Case
