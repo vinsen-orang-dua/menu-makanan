@@ -214,6 +214,29 @@ void Output(string name[], double tprice, int i)
 // Function: Calculate Total Purchase
 void TotalPurchase(double &tprice)
 {
+    /*cout << "\nTotal before discount: RM " << fixed << setprecision(2) << tprice << endl;
+
+    if (tprice > 40.0)
+    {
+        double discount = tprice * 0.1;  // Calculate 10% discount
+        tprice -= discount;  // Apply the discount
+        cout << "You have received a 10% discount!" << endl;
+        cout << "Discount: RM " << fixed << setprecision(2) << discount << endl;
+    }
+    else
+    {
+        cout << "No discount applied." << endl;
+    }
+
+    cout << "Total Price after discount: RM " << fixed << setprecision(2) << tprice << endl;*/
+}
+
+
+// Function: Calculate Change
+void Change(double &tprice)
+{
+    double amt, change=0.0;
+    char opt;
     cout << "\nTotal before discount: RM " << fixed << setprecision(2) << tprice << endl;
 
     if (tprice > 40.0)
@@ -229,14 +252,6 @@ void TotalPurchase(double &tprice)
     }
 
     cout << "Total Price after discount: RM " << fixed << setprecision(2) << tprice << endl;
-}
-
-
-// Function: Calculate Change
-void Change(double &tprice)
-{
-    double amt, change=0.0;
-    char opt;
 
     cout << "\nChoose your Payment Method. " << endl;
     cout << "1.Cash" << endl;
