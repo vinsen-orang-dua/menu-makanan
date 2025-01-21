@@ -23,21 +23,27 @@ void adminLogin();
 // Customer Function Prototypes
 void customerLogin();
 void TableMenu();
-void Order(string name[], double &tprice, int &i);
+void Order(string name[], int qtyStore[], double &tprice, int &i);
 void TotalPurchase(double &tprice);
-void Output(string name[], double tprice, int i);
+void Output(string name[], int qtyStore[], double tprice, int i);
 void Change(double tprice);
 
 //Global variables
 string name[100];    // Array to store item names
 double tprice = 0.0; // Total price
 int i = 0;           // Counter for items
+int qtyStore[100];   // Array to store quantity for each item
 string passM = "12345"; //Admin password
 
 int main()
 {
     greetings(); // Display greetings
     MainMenu();
+    /*TableMenu(); //Display lists of menus
+    Order(name, tprice, i); //Take order from customer
+    TotalPurchase(tprice); //Calculate total price & apply discount
+    Output(name, tprice, i); //Display the order details
+    Change(tprice); //Handle payment method and calculate change if have*/
 
     return 0;
 }
@@ -105,14 +111,14 @@ void customerLogin()
         MainMenu();
     if (toupper(opt) == 'O')
         TableMenu();        // Display lists of Menus
-    Order(name, tprice, i); // Take order from customer
+    Order(name, qtyStore, tprice, i); // Take order from customer
 }
 
 // TableMenu Function
 void TableMenu()
 {
     cout << endl;
-    cout << "Welcome customer!!!" << endl;
+    cout << "                                             WELCOME CUSTOMER !                                               " << endl;
     cout << "+------------------------------------------------------------------------------------------------------------+" << endl;
     cout << "|  Category  |        Food             |      Price        |            |       Beverages       |    Price   |" << endl;
     cout << "|------------|-------------------------|-------------------|------------|-----------------------|------------|" << endl;
@@ -139,7 +145,7 @@ void TableMenu()
     cout << "+----------------------------------------------------------+" << endl;
 }
 // Order Function
-void Order(string name[], double &tprice, int &i)
+void Order(string name[], int qtyStore[], double &tprice, int &i)
 {
     string category, FoodCode, bvgCode, temp;
     int qty;
@@ -170,6 +176,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Burger Ayam";
+                    qtyStore[i] = qty;
                     price = 5.00 * qty;
                     tprice += price;
                     i++;
@@ -179,6 +186,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Burger Ayam Telur";
+                    qtyStore[i] = qty;
                     price = 6.00 * qty;
                     tprice += price;
                     i++;
@@ -188,6 +196,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Burger Ayam Telur Cheese";
+                    qtyStore[i] = qty;
                     price = 7.00 * qty;
                     tprice += price;
                     i++;
@@ -197,6 +206,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Burger Daging";
+                    qtyStore[i] = qty;
                     price = 5.00 * qty;
                     tprice += price;
                     i++;
@@ -206,6 +216,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Burger Daging Telur";
+                    qtyStore[i] = qty;
                     price = 6.00 * qty;
                     tprice += price;
                     i++;
@@ -215,6 +226,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Burger Daging Telur Cheese";
+                    qtyStore[i] = qty;
                     price = 7.00 * qty;
                     tprice += price;
                     i++;
@@ -224,6 +236,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Spaghetti Carbonara";
+                    qtyStore[i] = qty;
                     price = 13.95 * qty;
                     tprice += price;
                     i++;
@@ -233,6 +246,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Spaghetti Bolognese";
+                    qtyStore[i] = qty;
                     price = 13.95 * qty;
                     tprice += price;
                     i++;
@@ -263,6 +277,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Watermelon Juice";
+                    qtyStore[i] = qty;
                     price = 7.00 * qty;
                     tprice += price;
                     i++;
@@ -272,6 +287,7 @@ void Order(string name[], double &tprice, int &i)
                     cout << "Quantity: ";
                     cin >> qty;
                     name[i] = "Honeydew Juice";
+                    qtyStore[i] = qty;
                     price = 8.00 * qty;
                     tprice += price;
                     i++;
@@ -289,6 +305,7 @@ void Order(string name[], double &tprice, int &i)
                             if (temp == "Hot")
                             {
                                 name[i] = "Teh C Hot";
+                                qtyStore[i] = qty;
                                 price = 4.50 * qty;
                                 tprice += price;
                                 i++;
@@ -296,6 +313,7 @@ void Order(string name[], double &tprice, int &i)
                             else if (temp == "Cold")
                             {
                                 name[i] = "Teh C Cold";
+                                qtyStore[i] = qty;
                                 price = 5.00 * qty;
                                 tprice += price;
                                 i++;
@@ -320,6 +338,7 @@ void Order(string name[], double &tprice, int &i)
                             if (temp == "Hot")
                             {
                                 name[i] = "Lemon Tea Hot";
+                                qtyStore[i] = qty;
                                 price = 4.50 * qty;
                                 tprice += price;
                                 i++;
@@ -327,6 +346,7 @@ void Order(string name[], double &tprice, int &i)
                             else if (temp == "Cold")
                             {
                                 name[i] = "Lemon Tea Cold";
+                                qtyStore[i] = qty;
                                 price = 5.00 * qty;
                                 tprice += price;
                                 i++;
@@ -343,9 +363,10 @@ void Order(string name[], double &tprice, int &i)
 
             } while (true);
         }
-        else if (category == "CONFIRM")
+        else if (category == "CONFIRM"){
+            cout << endl;
             break;
-        else
+        }else
         {
             cout << "Please enter a valid category." << endl;
         }
@@ -356,25 +377,27 @@ void Order(string name[], double &tprice, int &i)
 // TotalPurchase Function
 void TotalPurchase(double &tprice)
 {
-    cout << "\nYour total price is: RM" << tprice << endl;
+    cout << "======================================================" <<endl;
+    cout << "Your total price is: RM" << tprice << endl;
     if (tprice > 40.0)
     {
         tprice = tprice - (tprice * 0.1);
         cout << fixed << setprecision(2);
-        cout << "You have received a 10% Discount.";
+        cout << "You have received a 10% Discount." <<endl;
     }
 
-    Output(name, tprice, i); // Display the order details
+    Output(name, qtyStore, tprice, i); // Display the order details
 }
 // Output Function
-void Output(string name[], double tprice, int i)
+void Output(string name[], int qtyStore[], double tprice, int i)
 {
     cout << "\nYour Order: " << endl;
     for (int j = 0; j < i; j++)
     {
-        cout << j + 1 << ". " << name[j] << endl;
+        cout << j + 1 << ". " << name[j] << "-" << qtyStore[j] << endl;
     }
     cout << "Your total purchase is: RM" << tprice << endl;
+    cout << "======================================================" <<endl;
 
     Change(tprice); // Handle payment method and calculate change if have
 }
@@ -409,12 +432,14 @@ void Change(double tprice)
                     {
                         cout << "\nYou have RM" << change << " change.";
                         cout << "Please go to counter to collect your change." << endl;
+                        cout << "======================================================" <<endl;
                         break;
                     }
                 }
                 else if (amt = tprice)
                 {
                     cout << "\n\aNo change to collect" << endl;
+                    cout << "======================================================" <<endl;
                     break;
                 }
             } while (true);
@@ -427,7 +452,8 @@ void Change(double tprice)
             cout << fixed << setprecision(2);
             cout << "\a\nReceive 10% Discount" << endl;
             cout << "Total Price: RM" << tprice << endl;
-            cout << "No change to collect.";
+            cout << "No change to collect." <<endl;
+            cout << "======================================================" <<endl;
             break;
         }
         else
