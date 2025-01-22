@@ -160,7 +160,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
         cout << "|--------+-----------------------|" << endl;
         cout << "|    2   |     [B] Beverages     |" << endl;
         cout << "|--------+-----------------------|" << endl;
-        cout << "|    3   |     [O] Order         |" << endl;
+        cout << "|    3   |     [FM] Food Menu     |" << endl;
         cout << "|--------+-----------------------|" << endl;
         cout << "|    4   |     [C] Confirm Order |" << endl;
         cout << "|--------+-----------------------|" << endl;
@@ -375,7 +375,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
 
             } while (true);
         }
-        else if(category == "O" || category == "3")
+        else if(category == "FM" || category == "3")
         {
             TableMenu();
         }
