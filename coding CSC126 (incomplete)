@@ -27,13 +27,14 @@ void Order(string name[], int qtyStore[], double &tprice, int &i);
 void TotalPurchase(double &tprice);
 void Output(string name[], int qtyStore[], double tprice, int i);
 void Change(double tprice);
+string toUpperCase(const string &str);
 
-//Global variables
-string name[100];    // Array to store item names
-double tprice = 0.0; // Total price
-int i = 0;           // Counter for items
-int qtyStore[100];   // Array to store quantity for each item
-string passM = "12345"; //Admin password
+// Global variables
+string name[100];       // Array to store item names
+double tprice = 0.0;    // Total price
+int i = 0;              // Counter for items
+int qtyStore[100];      // Array to store quantity for each item
+string passM = "12345"; // Admin password
 
 int main()
 {
@@ -110,7 +111,7 @@ void customerLogin()
     if (toupper(opt) == 'M')
         MainMenu();
     if (toupper(opt) == 'O')
-        TableMenu();        // Display lists of Menus
+        TableMenu();                  // Display lists of Menus
     Order(name, qtyStore, tprice, i); // Take order from customer
 }
 
@@ -154,18 +155,29 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
     do
     {
         cout << endl;
-        cout << "Please select category (Food / Beverages): " << endl;
-        cout << "Enter CONFIRM to get your receipt: " << endl;
+        cout << "+--------------------------------+" << endl;
+        cout << "|    1   |     [F] Food          |" << endl;
+        cout << "|--------+-----------------------|" << endl;
+        cout << "|    2   |     [B] Beverages     |" << endl;
+        cout << "|--------+-----------------------|" << endl;
+        cout << "|    3   |     [O] Order         |" << endl;
+        cout << "|--------+-----------------------|" << endl;
+        cout << "|    4   |     [C] Confirm Order |" << endl;
+        cout << "|--------+-----------------------|" << endl;
+        cout << "|    5   |     [M] Main Menu     |" << endl;
+        cout << "+--------------------------------+" << endl;
+        cout << "Please select your choice: ";
         cin >> category;
-        if (category == "Food")
+        category = toUpperCase(category);
+        if (category == "1" || category == "F" || category == "FOOD") 
         {
             cout << "\nEnter food code and quantity. " << endl;
-            cout << "Enter DONE if you have finished. " << endl
-                 << endl;
+            cout << "Enter DONE if you have finished. " << endl;
             do
             {
                 cout << "Code: ";
                 cin >> FoodCode;
+                FoodCode = toUpperCase(FoodCode);
                 if (FoodCode == "DONE")
                 {
                     break;
@@ -257,15 +269,15 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
             } while (true);
         }
 
-        else if (category == "Beverages")
+        else if (category == "2" || category == "B" || category == "BEVERAGES")
         {
             cout << "\nEnter beverages code and quantity. " << endl;
-            cout << "Enter DONE if you have finished. " << endl
-                 << endl;
+            cout << "Enter DONE if you have finished. " << endl;
             do
             {
                 cout << "Code: ";
                 cin >> bvgCode;
+                bvgCode = toUpperCase(bvgCode);
 
                 if (bvgCode == "DONE")
                 {
@@ -363,27 +375,32 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
 
             } while (true);
         }
-        else if (category == "CONFIRM"){
-            cout << endl;
-            break;
-        }else
+        else if(category == "O" || category == "3")
+        {
+            TableMenu();
+        }
+        else if(category == "M" || category == "5")
+        {
+            MainMenu();
+        }
+        else
         {
             cout << "Please enter a valid category." << endl;
         }
-    } while (category != "CONFIRM");
+    } while (category != "CONFIRM" && category != "C" && category != "4");
 
     TotalPurchase(tprice); // Calculate total price & apply discount
 }
 // TotalPurchase Function
 void TotalPurchase(double &tprice)
 {
-    cout << "======================================================" <<endl;
+    cout << "======================================================" << endl;
     cout << "Your total price is: RM" << tprice << endl;
     if (tprice > 40.0)
     {
         tprice = tprice - (tprice * 0.1);
         cout << fixed << setprecision(2);
-        cout << "You have received a 10% Discount." <<endl;
+        cout << "You have received a 10% Discount." << endl;
     }
 
     Output(name, qtyStore, tprice, i); // Display the order details
@@ -391,13 +408,15 @@ void TotalPurchase(double &tprice)
 // Output Function
 void Output(string name[], int qtyStore[], double tprice, int i)
 {
-    cout << "\nYour Order: " << endl;
+    cout << "\n+==============+" << endl;
+    cout << "|  Order List  | " << endl;
+    cout << "+==============+" << endl;
     for (int j = 0; j < i; j++)
     {
-        cout << j + 1 << ". " << name[j] << "-" << qtyStore[j] << endl;
+        cout << j + 1 << ". " << name[j] << " - " << "x"<< qtyStore[j] << endl;
     }
     cout << "Your total purchase is: RM" << tprice << endl;
-    cout << "======================================================" <<endl;
+    cout << "======================================================" << endl;
 
     Change(tprice); // Handle payment method and calculate change if have
 }
@@ -432,14 +451,14 @@ void Change(double tprice)
                     {
                         cout << "\nYou have RM" << change << " change.";
                         cout << "Please go to counter to collect your change." << endl;
-                        cout << "======================================================" <<endl;
+                        cout << "======================================================" << endl;
                         break;
                     }
                 }
                 else if (amt = tprice)
                 {
                     cout << "\n\aNo change to collect" << endl;
-                    cout << "======================================================" <<endl;
+                    cout << "======================================================" << endl;
                     break;
                 }
             } while (true);
@@ -452,8 +471,8 @@ void Change(double tprice)
             cout << fixed << setprecision(2);
             cout << "\a\nReceive 10% Discount" << endl;
             cout << "Total Price: RM" << tprice << endl;
-            cout << "No change to collect." <<endl;
-            cout << "======================================================" <<endl;
+            cout << "RM" << tprice << " has been deducted from your account." << endl;
+            cout << "======================================================" << endl;
             break;
         }
         else
@@ -498,4 +517,14 @@ void adminLogin()
         else
             cout << "Entered wrong password." << endl;
     } while (passlog != passM);
+}
+
+string toUpperCase(const string &str)
+{
+    string result = str;
+    for (char &ch : result)
+    {
+        ch = toupper(ch);
+    }
+    return result;
 }
