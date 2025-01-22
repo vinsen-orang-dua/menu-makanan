@@ -398,7 +398,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
 // TotalPurchase Function
 void TotalPurchase(double &tprice)
 {
-    cout << "======================================================" << endl;
+    cout << "\n======================================================" << endl;
     cout << "Your total price is: RM" << tprice << endl;
     if (tprice > 40.0)
     {
