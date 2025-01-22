@@ -312,9 +312,10 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     {
                         cout << "Enter Hot or Cold: ";
                         cin >> temp;
-                        if (temp == "Hot" || temp == "Cold")
+                        temp = toUpperCase(temp);
+                        if (temp == "HOT" || temp == "COLD")
                         {
-                            if (temp == "Hot")
+                            if (temp == "HOT")
                             {
                                 name[i] = "Teh C Hot";
                                 qtyStore[i] = qty;
@@ -322,7 +323,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                                 tprice += price;
                                 i++;
                             }
-                            else if (temp == "Cold")
+                            else if (temp == "COLD")
                             {
                                 name[i] = "Teh C Cold";
                                 qtyStore[i] = qty;
