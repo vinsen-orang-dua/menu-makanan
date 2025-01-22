@@ -100,11 +100,11 @@ void customerLogin()
 {
     char opt;
 
-    cout << "+------------------------------+" << endl;
-    cout << "|    O   |        Order        |" << endl;
-    cout << "|--------+---------------------|" << endl;
-    cout << "|    M   |      Main Menu      |" << endl;
-    cout << "+------------------------------+" << endl;
+    cout << "+--------+-------------------------+" << endl;
+    cout << "|    O   |     [O] Order           |" << endl;
+    cout << "|--------+-------------------------|" << endl;
+    cout << "|    M   |     [M] Main Menu       |" << endl;
+    cout << "+----------------------------------+" << endl;
     cout << "Enter your choice: ";
     cin >> opt;
 
@@ -169,7 +169,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
         cout << "Please select your choice: ";
         cin >> category;
         category = toUpperCase(category);
-        if (category == "1" || category == "F" || category == "FOOD") 
+        if (category == "1" || category == "F" || category == "FOOD")
         {
             cout << "\nEnter food code and quantity. " << endl;
             cout << "Enter DONE if you have finished. " << endl;
@@ -377,21 +377,23 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
 
             } while (true);
         }
-        else if(category == "FM" || category == "3")
+        else if (category == "FM" || category == "3")
         {
             TableMenu();
         }
-        else if(category == "M" || category == "5")
+        else if (category == "M" || category == "5")
         {
             MainMenu();
+        }
+        else if (category == "C" || category == "4")
+        {
+            TotalPurchase(tprice); // Calculate total price & apply discount
         }
         else
         {
             cout << "Please enter a valid category." << endl;
         }
-    } while (category != "CONFIRM" && category != "C" && category != "4");
-
-    TotalPurchase(tprice); // Calculate total price & apply discount
+    } while (true);
 }
 // TotalPurchase Function
 void TotalPurchase(double &tprice)
@@ -404,6 +406,11 @@ void TotalPurchase(double &tprice)
         cout << fixed << setprecision(2);
         cout << "You have received a 10% Discount." << endl;
     }
+    else if (tprice == 0.0)
+    {
+        cout << "You have not purchased anything." << endl;
+        MainMenu();
+    }
 
     Output(name, qtyStore, tprice, i); // Display the order details
 }
@@ -415,7 +422,7 @@ void Output(string name[], int qtyStore[], double tprice, int i)
     cout << "+==============+" << endl;
     for (int j = 0; j < i; j++)
     {
-        cout << j + 1 << ". " << name[j] << " - " << "x"<< qtyStore[j] << endl;
+        cout << j + 1 << ". " << name[j] << " - " << "x" << qtyStore[j] << endl;
     }
     cout << "Your total purchase is: RM" << tprice << endl;
     cout << "======================================================" << endl;
@@ -483,6 +490,7 @@ void Change(double tprice)
         }
 
     } while (true);
+    MainMenu();
 }
 // AdminLogin Function
 void adminLogin()
