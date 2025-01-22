@@ -160,7 +160,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
         cout << "|--------+-----------------------|" << endl;
         cout << "|    2   |     [B] Beverages     |" << endl;
         cout << "|--------+-----------------------|" << endl;
-        cout << "|    3   |     [FM] Food Menu     |" << endl;
+        cout << "|    3   |     [FM] Food Menu    |" << endl;
         cout << "|--------+-----------------------|" << endl;
         cout << "|    4   |     [C] Confirm Order |" << endl;
         cout << "|--------+-----------------------|" << endl;
