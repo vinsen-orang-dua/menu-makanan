@@ -336,7 +336,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                         {
                             cout << "Invalid! Please enter again.";
                         }
-                    } while (temp != "Hot" && temp != "Cold");
+                    } while (temp != "HOT" && temp != "COLD");
                 }
                 else if (bvgCode == "LT")
                 {
@@ -346,9 +346,10 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     {
                         cout << "Enter Hot or Cold: ";
                         cin >> temp;
-                        if (temp == "Hot" || temp == "Cold")
+                        temp = toUpperCase(temp);
+                        if (temp == "HOT" || temp == "COLD")
                         {
-                            if (temp == "Hot")
+                            if (temp == "HOT")
                             {
                                 name[i] = "Lemon Tea Hot";
                                 qtyStore[i] = qty;
@@ -356,7 +357,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                                 tprice += price;
                                 i++;
                             }
-                            else if (temp == "Cold")
+                            else if (temp == "COLD")
                             {
                                 name[i] = "Lemon Tea Cold";
                                 qtyStore[i] = qty;
@@ -369,7 +370,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                         {
                             cout << "Invalid! Please enter again.";
                         }
-                    } while (temp != "Hot" && temp != "Cold");
+                    } while (temp != "HOT" && temp != "COLD");
                 }
                 else
                     cout << "Beverages code not available." << endl;
@@ -450,7 +451,7 @@ void Change(double tprice)
                     change = amt - tprice;
                     if (change > 0.0)
                     {
-                        cout << "\nYou have RM" << change << " change.";
+                        cout << "\nYou have RM" << change << " change." << endl;
                         cout << "Please go to counter to collect your change." << endl;
                         cout << "======================================================" << endl;
                         break;
