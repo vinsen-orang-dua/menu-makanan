@@ -33,13 +33,16 @@ string toUpperCase(const string &str);
 
 // Global variables
 string name[100]; //Array to store item names
+string passM = "12345"; //Admin password
 double tprice = 0.0; //Total price
 double totalSales = 0.0; //Total sales
 double total=0.0, highestSale=-99999, lowestSale=99999; //To find lowest and highest 
 int i = 0; //Counter for items
 int qtyStore[100]; //Array to store quantity for each item
-int TotalCust=0; //counter for customer        
-string passM = "12345"; //Admin password
+int TotalCust=0; //counter for customer
+int purchasedA=0, purchasedAT=0, purchasedATC=0, purchasedD=0, 
+purchasedDT=0, purchasedDTC=0, purchasedB=0, purchasedC=0, 
+purchasedWJ=0, purchasedHJ=0, purchasedTC=0, purchasedLT=0; //variables to count each item purchased 
 
 int main()
 {
@@ -125,11 +128,11 @@ void FoodMenu()
     cout << "|------------|-------------------------|-------------------|" << endl;
     cout << "|     ATC    |  Ayam + Telur + Cheese  |     RM 7.00       |" << endl;
     cout << "|------------|-------------------------|-------------------|" << endl;
-    cout << "|     D      |      Burger Daging      |     RM 5.00       |" << endl;
+    cout << "|     D      |        Daging           |     RM 5.00       |" << endl;
     cout << "|------------|-------------------------|-------------------|" << endl;
-    cout << "|     DT     |  Burger Daging + Telur  |     RM 6.00       |" << endl;
+    cout << "|     DT     |     Daging + Telur      |     RM 6.00       |" << endl;
     cout << "|------------|-------------------------|-------------------|" << endl;
-    cout << "|     DTC    |  Burger Daging + Telur  |     RM 7.00       |" << endl;
+    cout << "|     DTC    |     Daging + Telur      |     RM 7.00       |" << endl;
     cout << "|            |       + Cheese          |                   |" << endl;
     cout << "|------------|-------------------------|-------------------|" << endl;
     cout << "|            |       [Spaghetti]       |                   |" << endl;
@@ -203,6 +206,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Burger Ayam";
                     qtyStore[i] = qty;
+                    purchasedA += qty;
                     price = 5.00 * qty;
                     tprice += price;
                     i++;
@@ -213,6 +217,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Burger Ayam Telur";
                     qtyStore[i] = qty;
+                    purchasedAT += qty;
                     price = 6.00 * qty;
                     tprice += price;
                     i++;
@@ -223,6 +228,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Burger Ayam Telur Cheese";
                     qtyStore[i] = qty;
+                    purchasedATC += qty;
                     price = 7.00 * qty;
                     tprice += price;
                     i++;
@@ -233,6 +239,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Burger Daging";
                     qtyStore[i] = qty;
+                    purchasedD += qty;
                     price = 5.00 * qty;
                     tprice += price;
                     i++;
@@ -243,6 +250,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Burger Daging Telur";
                     qtyStore[i] = qty;
+                    purchasedDT += qty;
                     price = 6.00 * qty;
                     tprice += price;
                     i++;
@@ -253,6 +261,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Burger Daging Telur Cheese";
                     qtyStore[i] = qty;
+                    purchasedDTC += qty;
                     price = 7.00 * qty;
                     tprice += price;
                     i++;
@@ -263,6 +272,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Spaghetti Carbonara";
                     qtyStore[i] = qty;
+                    purchasedC += qty;
                     price = 13.95 * qty;
                     tprice += price;
                     i++;
@@ -273,6 +283,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Spaghetti Bolognese";
                     qtyStore[i] = qty;
+                    purchasedB += qty;
                     price = 13.95 * qty;
                     tprice += price;
                     i++;
@@ -305,6 +316,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Watermelon Juice";
                     qtyStore[i] = qty;
+                    purchasedWJ += qty;
                     price = 7.00 * qty;
                     tprice += price;
                     i++;
@@ -315,6 +327,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     name[i] = "Honeydew Juice";
                     qtyStore[i] = qty;
+                    purchasedHJ += qty;
                     price = 8.00 * qty;
                     tprice += price;
                     i++;
@@ -346,7 +359,8 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                                 tprice += price;
                                 i++;
                             }
-                        }
+                            purchasedTC += qty;
+                        } 
                         else
                         {
                             cout << "Invalid! Please enter again.";
@@ -380,6 +394,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                                 tprice += price;
                                 i++;
                             }
+                            purchasedLT += qty;
                         }
                         else
                         {
@@ -533,6 +548,47 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
             cout << "| TOTAL  SALES | HIGHEST SALES | LOWEST SALES | TOTAL CUSTOMER |" << endl;
             cout << "  RM" << totalSales << "\t RM" << highestSale << "\t RM" << lowestSale << "\t\t" << TotalCust <<endl;
             cout << "+--------------+---------------+--------------+----------------+" << endl;
+            cout << endl;
+            cout << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "|          Food              |      PURCHASED      |" << endl;
+            cout << "|--------------------------------------------------|" << endl;
+            cout << "|                     [Burger]                     |" << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "           Ayam              |" << "\t\t" << purchasedA << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << "        Ayam + Telur         |" << "\t\t" << purchasedAT << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << "     Ayam + Telur + Cheese   |" << "\t\t" << purchasedATC << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << "          Daging             |" << "\t\t" << purchasedD << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << "       Daging + Telur        |" << "\t\t" << purchasedDT << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << "   Daging + Telur + Cheese   |" << "\t\t" << purchasedDTC << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "|                     [Spaghetti]                  |" << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "          Carbonara          |" << "\t\t" << purchasedC << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << "          Bolognese          |" << "\t\t" << purchasedB << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "|          Beverages         |      PURCHASED      |" << endl;
+            cout << "|--------------------------------------------------|" << endl;
+            cout << "|                  [Minuman Bujang]                |" << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "       Watermelon Juice      |" << "\t\t" << purchasedWJ << endl;
+            cout << "----------------------------------------------------" << endl;
+            cout << "       Honeyew Juice         |" << "\t\t" <<purchasedHJ << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "|                     [Minuman Lega]               |" << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << "            Teh C            |" << "\t\t" << purchasedTC << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "          Lemon Tea          |" << "\t\t" << purchasedLT << endl;
+            cout << "---------------------------------------------------" << endl;
             cout << endl;
             cout << "+------------------------------+" << endl;
             cout << "|    X   |        Exit         |" << endl;
