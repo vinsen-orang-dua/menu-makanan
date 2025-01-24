@@ -538,10 +538,6 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
 
         if (passlog == passM)
         {
-            if (total > highestSale)
-                highestSale = total;
-            if (total < lowestSale)
-                lowestSale = total;
 
             cout << endl;
             cout << "+--------------------------------------------------------------+" << endl;
