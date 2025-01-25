@@ -47,7 +47,6 @@ purchasedWJ=0, purchasedHJ=0, purchasedTC=0, purchasedLT=0; //variables to count
 int main()
 {
     greetings(); //Display greetings
-    MainMenu(); //Display main menu
 
     return 0;
 }
@@ -62,6 +61,7 @@ void greetings()
     cout << "Press any key [Q] to continue..." << endl;
     cin >> key;
     getchar();
+    MainMenu();
 }
 
 //MainMenu Function
@@ -69,7 +69,7 @@ void MainMenu()
 {
     char userType;
 
-    do
+     do
     {
         cout << endl;
         cout << "+-------------------------------------+" << endl;
@@ -78,6 +78,8 @@ void MainMenu()
         cout << "|    1   |       Administrator        |" << endl;
         cout << "+--------+----------------------------+" << endl;
         cout << "|    2   |       Customer             |" << endl;
+        cout << "+-------------------------------------+" << endl;
+        cout << "|    3   |       Back                 |" << endl;
         cout << "+-------------------------------------+" << endl;
         cout << "Login as: ";
         cin >> userType;
@@ -89,9 +91,13 @@ void MainMenu()
             tprice=0.0; //Reset tprice
             total=0.0; //Reset total
             customerLogin();
+        }
+        else if (userType == '3'){
+            cout << endl;
+            greetings();
         }else
             cout << "Incorrect. Please enter again.";
-    } while (toupper(userType) != 'X');
+    } while (toupper(userType) != '3');
 }
 
 //Customer Login Function
@@ -99,6 +105,7 @@ void customerLogin()
 {
     char opt;
 
+    cout << endl;
     cout << "+--------+-------------------------+" << endl;
     cout << "|    O   |     [O] Order           |" << endl;
     cout << "|--------+-------------------------|" << endl;
@@ -188,14 +195,15 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
         if (category == "1" || category == "F" || category == "FOOD")
         {
             FoodMenu();
-            cout << "\nEnter food code and quantity. " << endl;
-            cout << "Enter DONE if you have finished. " << endl;
+            cout << "\n+--------------+" << endl;
+            cout << "|     FOOD     |" << endl;
+            cout << "+--------------+" << endl;
             do
             {
-                cout << "Code: ";
+                cout << "Enter food code (X to exit): ";
                 cin >> FoodCode;
                 FoodCode = toUpperCase(FoodCode);
-                if (FoodCode == "DONE")
+                if (FoodCode == "X")
                 {
                     break;
                 }
@@ -297,15 +305,16 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
         else if (category == "2" || category == "B" || category == "BEVERAGES")
         {
             BeveragesMenu();
-            cout << "\nEnter beverages code and quantity. " << endl;
-            cout << "Enter DONE if you have finished. " << endl;
+            cout << "\n+---------------+" << endl;
+            cout << "|   BEVERAGES   |" << endl;
+            cout << "+---------------+" << endl;
             do
             {
-                cout << "Code: ";
+                cout << "Enter beverages code (X to exit): ";
                 cin >> bvgCode;
                 bvgCode = toUpperCase(bvgCode);
 
-                if (bvgCode == "DONE")
+                if (bvgCode == "X")
                 {
                     break;
                 }
@@ -338,12 +347,16 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     do
                     {
-                        cout << "Enter Hot or Cold: ";
+                        cout << "+---------------+" << endl;
+                        cout << "| 1 |   HOT     |" << endl;
+                        cout << "+---------------+" << endl;
+                        cout << "| 2 |   COLD    |" << endl;
+                        cout << "+---------------+" << endl;
+                        cout << "Enter preferences: ";
                         cin >> temp;
-                        temp = toUpperCase(temp);
-                        if (temp == "HOT" || temp == "COLD")
+                        if (temp == "1" || temp == "2")
                         {
-                            if (temp == "HOT")
+                            if (temp == "1")
                             {
                                 name[i] = "Teh C Hot";
                                 qtyStore[i] = qty;
@@ -351,7 +364,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                                 tprice += price;
                                 i++;
                             }
-                            else if (temp == "COLD")
+                            else if (temp == "2")
                             {
                                 name[i] = "Teh C Cold";
                                 qtyStore[i] = qty;
@@ -365,7 +378,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                         {
                             cout << "Invalid! Please enter again.";
                         }
-                    } while (temp != "HOT" && temp != "COLD");
+                    } while (temp != "1" && temp != "2");
                 }
                 else if (bvgCode == "LT")
                 {
@@ -373,12 +386,16 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                     cin >> qty;
                     do
                     {
-                        cout << "Enter Hot or Cold: ";
+                        cout << "+---------------+" << endl;
+                        cout << "| 1 |   HOT     |" << endl;
+                        cout << "+---------------+" << endl;
+                        cout << "| 2 |   COLD    |" << endl;
+                        cout << "+---------------+" << endl;
+                        cout << "Enter preferences: ";
                         cin >> temp;
-                        temp = toUpperCase(temp);
-                        if (temp == "HOT" || temp == "COLD")
+                        if (temp == "1" || temp == "2")
                         {
-                            if (temp == "HOT")
+                            if (temp == "1")
                             {
                                 name[i] = "Lemon Tea Hot";
                                 qtyStore[i] = qty;
@@ -386,7 +403,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                                 tprice += price;
                                 i++;
                             }
-                            else if (temp == "COLD")
+                            else if (temp == "2")
                             {
                                 name[i] = "Lemon Tea Cold";
                                 qtyStore[i] = qty;
@@ -400,7 +417,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                         {
                             cout << "Invalid! Please enter again.";
                         }
-                    } while (temp != "HOT" && temp != "COLD");
+                    } while (temp != "1" && temp != "2");
                 }
                 else
                     cout << "Beverages code not available." << endl;
@@ -462,10 +479,14 @@ void Change(double tprice, int &TotalCust)
     double amt, change = 0.0;
     char opt;
 
-    cout << "\nChoose your Payment Method. " << endl;
-    cout << "1.Cash" << endl;
-    cout << "2.Debit" << endl;
-    cout << "Enter 1 or 2: ";
+    cout << "\n+----------------------------+" << endl;
+    cout << "| Choose your Payment Method | " << endl;
+    cout << "+----------------------------+" << endl;
+    cout << "|   1   |  Cash              |" << endl;
+    cout << "+----------------------------+" << endl;
+    cout << "|   2   |  Debit             |" << endl;
+    cout << "+----------------------------+" << endl;
+    cout << "Enter method: ";
     do
     {
         cin >> opt;
@@ -540,51 +561,47 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
         {
 
             cout << endl;
-            cout << "+--------------------------------------------------------------+" << endl;
-            cout << "| TOTAL  SALES | HIGHEST SALES | LOWEST SALES | TOTAL CUSTOMER |" << endl;
-            cout << "  RM" << totalSales << "\t RM" << highestSale << "\t RM" << lowestSale << "\t\t" << TotalCust <<endl;
-            cout << "+--------------+---------------+--------------+----------------+" << endl;
-            cout << endl;
-            cout << endl;
+            cout << "+--------------+" << endl;
+            cout << "| TOTAL  SALES | [ RM" << totalSales << " ]" << endl;
+            cout << "+--------------+" << endl;
+            cout << "| HIGHEST SALE | [ RM" << highestSale << " ]" << endl;
+            cout << "+--------------+" << endl;
+            cout << "| LOWEST SALE  | [ RM" << lowestSale << " ]" << endl;
+            cout << "+--------------+" << endl;
+            cout << "|TOTAL CUSTOMER| [ " << TotalCust << " ]" << endl;
+            cout << "+--------------+" << endl;
+            cout << endl << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "|          Food              |      PURCHASED      |" << endl;
             cout << "|--------------------------------------------------|" << endl;
             cout << "|                     [Burger]                     |" << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "           Ayam              |" << "\t\t" << purchasedA << endl;
-            cout << "----------------------------------------------------" << endl;
             cout << "        Ayam + Telur         |" << "\t\t" << purchasedAT << endl;
-            cout << "----------------------------------------------------" << endl;
             cout << "     Ayam + Telur + Cheese   |" << "\t\t" << purchasedATC << endl;
-            cout << "----------------------------------------------------" << endl;
             cout << "          Daging             |" << "\t\t" << purchasedD << endl;
-            cout << "----------------------------------------------------" << endl;
             cout << "       Daging + Telur        |" << "\t\t" << purchasedDT << endl;
-            cout << "----------------------------------------------------" << endl;
             cout << "   Daging + Telur + Cheese   |" << "\t\t" << purchasedDTC << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "|                     [Spaghetti]                  |" << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "          Carbonara          |" << "\t\t" << purchasedC << endl;
-            cout << "----------------------------------------------------" << endl;
             cout << "          Bolognese          |" << "\t\t" << purchasedB << endl;
-            cout << "----------------------------------------------------" << endl;
-            cout << endl;
+            cout << "+--------------------------------------------------+" << endl;
+            cout << endl << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "|          Beverages         |      PURCHASED      |" << endl;
             cout << "|--------------------------------------------------|" << endl;
             cout << "|                  [Minuman Bujang]                |" << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "       Watermelon Juice      |" << "\t\t" << purchasedWJ << endl;
-            cout << "----------------------------------------------------" << endl;
             cout << "       Honeyew Juice         |" << "\t\t" <<purchasedHJ << endl;
             cout << "+--------------------------------------------------+" << endl;
-            cout << "|                     [Minuman Lega]               |" << endl;
+            cout << "|                   [Minuman Lega]                 |" << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "            Teh C            |" << "\t\t" << purchasedTC << endl;
-            cout << "---------------------------------------------------" << endl;
             cout << "          Lemon Tea          |" << "\t\t" << purchasedLT << endl;
-            cout << "---------------------------------------------------" << endl;
+            cout << "+--------------------------------------------------+" << endl;
             cout << endl;
             cout << "+------------------------------+" << endl;
             cout << "|    X   |        Exit         |" << endl;
@@ -598,7 +615,7 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
                 MainMenu();
             else if (toupper(opt) == 'X')
             {
-                cout << "Thank you!!!";
+                cout << "Thank you for using our system!";
                 exit(0);
             }
         }
