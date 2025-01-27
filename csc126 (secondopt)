@@ -36,7 +36,7 @@ string name[100]; //Array to store item names
 string passM = "12345"; //Admin password
 double tprice = 0.0; //Total price
 double totalSales = 0.0; //Total sales
-double total=0.0, highestSale=-99999, lowestSale=99999; //To find lowest and highest 
+double total=0.0, highestSale=-9999, lowestSale=9999; //To find lowest and highest 
 int i = 0; //Counter for items
 int qtyStore[100]; //Array to store quantity for each item
 int TotalCust=0; //counter for customer
@@ -700,9 +700,13 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
         system("cls");
         cout << "Enter password: ";
         cin >> passlog;
+       
 
+
+ 
         if (passlog == passM)
         {
+       
             cout << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "|                     ADMIN PAGE                   |" << endl;
