@@ -7,20 +7,24 @@ Purpose: Prepare a more efficient method of ordering.
          4.Total Purchase Calculation
          5.Display Order details
          6.Calculate Change based on Payment method
+         7.Admin-Display TotalSales, HighestSale, LowestSale, Quantity of each item sold
 */
 
 #include <iostream>
 #include <string>
-#include <iomanip> //for setprecision
-#include <ctype.h> //for toupper
-#include <stdlib.h> //for clearing the screen 
+#include <iomanip>  // for setprecision
+#include <ctype.h>  // for toupper
+#include <stdlib.h> // for clearing the screen
 using namespace std;
 
 // Greeting and Menu Function Prototypes
 void greetings();
 void MainMenu();
 // Admin Function Protoypes
-void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int &TotalCust, int &purchasedA, int &purchasedAT, int &purchasedATC, int &purchasedD, int &purchasedDT, int &purchasedDTC, int &purchasedC, int &purchasedB, int &purchasedWJ, int &purchasedHJ, int &purchasedTC, int &purchasedLT);
+void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int &TotalCust,
+                int &purchasedA, int &purchasedAT, int &purchasedATC, int &purchasedD,
+                int &purchasedDT, int &purchasedDTC, int &purchasedC, int &purchasedB,
+                int &purchasedWJ, int &purchasedHJ, int &purchasedTC, int &purchasedLT);
 // Customer Function Prototypes
 void customerLogin();
 void FoodMenu();
@@ -32,27 +36,28 @@ void Change(double tprice, int &TotalCust);
 string toUpperCase(const string &str);
 
 // Global variables
-string name[100]; //Array to store item names
-string passM = "12345"; //Admin password
-double tprice = 0.0; //Total price
-double totalSales = 0.0; //Total sales
-double total=0.0, highestSale=-9999, lowestSale=9999; //To find lowest and highest 
-int i = 0; //Counter for items
-int qtyStore[100]; //Array to store quantity for each item
-int TotalCust=0; //counter for customer
-int purchasedA=0, purchasedAT=0, purchasedATC=0, purchasedD=0, 
-purchasedDT=0, purchasedDTC=0, purchasedB=0, purchasedC=0, 
-purchasedWJ=0, purchasedHJ=0, purchasedTC=0, purchasedLT=0; //variables to count each item purchased 
-int aqty = 0, atqty = 0, atcqty = 0, dqty = 0, dtqty = 0, dtcqty = 0, bqty = 0, cqty = 0, wjqty = 0, hjqty = 0, tcqty = 0, ltqty = 0, hot = 0, cold = 0;
+string name[100];                                             // Array to store item names
+string passM = "12345";                                       // Admin password
+double tprice=0.0;                                          // Total price
+double totalSales=0.0;                                      // Total sales
+double total=0.0, highestSale = -99999, lowestSale = 99999; // To find lowest and highest
+int i=0;                                                    // Counter for items
+int qtyStore[100];                                            // Array to store quantity for each item
+int TotalCust=0;                                            // counter for customer
+int Aqty=0, ATqty=0, ATCqty=0, Dqty=0, DTqty=0, DTCqty=0, Bqty=0,
+    Cqty=0, WJqty=0, HJqty=0, TCqty=0, LTqty=0; // variables to count each item purchased
+int purchasedA=0, purchasedAT=0, purchasedATC=0, purchasedD=0,
+    purchasedDT=0, purchasedDTC=0, purchasedB=0, purchasedC=0,
+    purchasedWJ=0, purchasedHJ=0, purchasedTC=0, purchasedLT=0; // variables to count each item purchased once confirmed
 
 int main()
 {
-    greetings(); //Display greetings
+    greetings(); // Display greetings
 
     return 0;
 }
 
-//greetings Function
+// greetings Function
 void greetings()
 {
     char key;
@@ -65,16 +70,13 @@ void greetings()
     MainMenu();
 }
 
-//MainMenu Function
+// MainMenu Function
 void MainMenu()
 {
     char userType;
 
-     do
+    do
     {
-            
-          
-        
         cout << endl;
         cout << "+-------------------------------------+" << endl;
         cout << "|              MAIN MENU              |" << endl;
@@ -88,24 +90,30 @@ void MainMenu()
         cout << "Login as: ";
         cin >> userType;
 
-        if (userType == '1'){
-            adminLogin(totalSales, highestSale, lowestSale, TotalCust, purchasedA, purchasedAT, purchasedATC, purchasedD, purchasedDT, purchasedDTC, purchasedC, purchasedB, purchasedWJ, purchasedHJ, purchasedTC, purchasedLT);
-        }else if (userType == '2'){
-            i=0; //Reset i
-            tprice=0.0; //Reset tprice
-            total=0.0; //Reset total
+        if (userType == '1')
+        {
+            adminLogin(totalSales, highestSale, lowestSale, TotalCust, purchasedA, purchasedAT, purchasedATC, purchasedD,
+                       purchasedDT, purchasedDTC, purchasedC, purchasedB, purchasedWJ, purchasedHJ, purchasedTC, purchasedLT);
+        }
+        else if (userType == '2')
+        {
+            i=0;        // Reset i
+            tprice=0.0; // Reset tprice
+            total=0.0;  // Reset total
             customerLogin();
         }
-        else if (userType == '3'){
+        else if (userType == '3')
+        {
             cout << endl;
             system("cls");
             greetings();
-        }else
+        }
+        else
             cout << "Incorrect. Please enter again.";
     } while (toupper(userType) != '3');
 }
 
-//Customer Login Function
+// Customer Login Function
 void customerLogin()
 {
     char opt;
@@ -114,30 +122,33 @@ void customerLogin()
     cout << "+----------------------------------+" << endl;
     cout << "|           CUSTOMER PAGE          |" << endl;
     cout << "+----------------------------------+" << endl;
-    cout << endl << endl;
+    cout << endl
+         << endl;
     cout << "+----------------------------------+" << endl;
     cout << "|    O   |     [O] Order           |" << endl;
     cout << "|--------+-------------------------|" << endl;
     cout << "|    M   |     [M] Main Menu       |" << endl;
     cout << "+----------------------------------+" << endl;
     cout << "Enter your choice: ";
-    do{
-    cin >> opt;
+    do
+    {
+        cin >> opt;
 
-    if (toupper(opt) == 'M' || opt == '2'){
-        system("cls");
-        MainMenu();
-    }
-    else if (toupper(opt) == 'O' || opt == '1'){
-        Order(name, qtyStore, tprice, i); //Take order from customer
+        if (toupper(opt) == 'M' || opt == '2')
+        {
+            system("cls");
+            MainMenu();
+        }
+        else if (toupper(opt) == 'O' || opt == '1')
+        {
+            Order(name, qtyStore, tprice, i); // Take order from customer
         }
         else
-        cout << "Invalid. Please enter again: ";
-    }while(toupper(opt) != 'M' && opt != '2' && toupper(opt) != 'O' && opt != '1'); 
+            cout << "Invalid. Please enter again: ";
+    } while (toupper(opt) != 'M' && opt != '2' && toupper(opt) != 'O' && opt != '1');
 }
 
-
-//Food Menu Function
+// Food Menu Function
 void FoodMenu()
 {
     cout << endl;
@@ -166,7 +177,7 @@ void FoodMenu()
     cout << "|      B     |        Bolognese        |     RM 13.95      |" << endl;
     cout << "+----------------------------------------------------------+" << endl;
 }
-//Beverages Menu Function
+// Beverages Menu Function
 void BeveragesMenu()
 {
     cout << endl;
@@ -186,18 +197,16 @@ void BeveragesMenu()
     cout << "|     LT     |       Lemon Tea       |   RM 4.50  |   RM 5.00    |" << endl;
     cout << "|----------------------------------------------------------------+" << endl;
 }
-//Order Function
-void Order(string name[], int qtyStore[], double &tprice, int &i) 
+// Order Function
+void Order(string name[], int qtyStore[], double &tprice, int &i)
 {
     string category, FoodCode, bvgCode, temp;
-    int qty;
+    int qty, hot, cold;
     double price;
+    int Aqty=0, ATqty=0, ATCqty=0, Dqty=0, DTqty=0, DTCqty=0, Bqty=0, Cqty=0, WJqty=0, HJqty=0, TCqty=0, LTqty=0;
 
-    int aqty = 0, atqty = 0, atcqty = 0, dqty = 0, dtqty = 0, dtcqty = 0, bqty = 0, cqty = 0, wjqty = 0, hjqty = 0, tcqty = 0, ltqty = 0, hot = 0, cold = 0;//reset item purchase quantity for next customer
     do
     {
-       
-        
         cout << endl;
         cout << "        WELCOME CUSTOMER !        " << endl;
         cout << "+--------------------------------+" << endl;
@@ -227,166 +236,197 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                 {
                     break;
                 }
-
                 if (FoodCode == "A")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Burger Ayam";
-                        qtyStore[i] = qty;
-                        price = 5.00 * qty;
-                        tprice += price;
-                        aqty = qty;
-                        i++;
-                        break;
-                    }
-                    else 
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Burger Ayam";
+                            qtyStore[i] = qty;
+                            price = 5.00 * qty;
+                            tprice += price;
+                            Aqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (FoodCode == "AT")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Burger Ayam Telur";
-                        qtyStore[i] = qty;
-                        price = 6.00 * qty;
-                        tprice += price;
-                        atqty = qty;
-                        i++;
-                        break;
-                    }
-                    else 
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Burger Ayam Telur";
+                            qtyStore[i] = qty;
+                            price = 6.00 * qty;
+                            tprice += price;
+                            ATqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (FoodCode == "ATC")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Burger Ayam Telur Cheese";
-                        qtyStore[i] = qty;
-                        price = 7.00 * qty;
-                        tprice += price;
-                        atcqty = qty;
-                        i++;
-                        break;
-                    }
-                    else
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Burger Ayam Telur Cheese";
+                            qtyStore[i] = qty;
+                            price = 7.00 * qty;
+                            tprice += price;
+                            ATCqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (FoodCode == "D")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Burger Daging";
-                        qtyStore[i] = qty;
-                        price = 5.00 * qty;
-                        tprice += price;
-                        dqty = qty;
-                        i++;
-                        break;
-                    }
-                    else
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Burger Daging";
+                            qtyStore[i] = qty;
+                            price = 5.00 * qty;
+                            tprice += price;
+                            Dqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (FoodCode == "DT")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Burger Daging Telur";
-                        qtyStore[i] = qty;
-                        price = 6.00 * qty;
-                        tprice += price;
-                        dtqty = qty;
-                        i++;
-                        break;
-                    }
-                    else 
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Burger Daging Telur";
+                            qtyStore[i] = qty;
+                            price = 6.00 * qty;
+                            tprice += price;
+                            DTqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (FoodCode == "DTC")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Burger Daging Telur Cheese";
-                        qtyStore[i] = qty;
-                        price = 7.00 * qty;
-                        tprice += price;
-                        dtcqty = qty;
-                        i++;
-                        break;
-                    }
-                    else 
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Burger Daging Telur Cheese";
+                            qtyStore[i] = qty;
+                            price = 7.00 * qty;
+                            tprice += price;
+                            DTCqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (FoodCode == "C")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Spaghetti Carbonara";
-                        qtyStore[i] = qty;
-                        price = 13.95 * qty;
-                        tprice += price;
-                        cqty = qty;
-                        i++;
-                        break;
-                    }
-                    else 
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Spaghetti Carbonara";
+                            qtyStore[i] = qty;
+                            price = 13.95 * qty;
+                            tprice += price;
+                            Cqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (FoodCode == "B")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Spaghetti Bolognese";
-                        qtyStore[i] = qty;
-                        price = 13.95 * qty;
-                        tprice += price;
-                        bqty = qty;
-                        i++;
-                        break;
-                    }
-                    else
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Spaghetti Bolognese";
+                            qtyStore[i] = qty;
+                            price = 13.95 * qty;
+                            tprice += price;
+                            Bqty = qty;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else
                     cout << "Food Code not available" << endl;
@@ -414,177 +454,187 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
                 if (bvgCode == "WJ")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){
-                        name[i] = "Watermelon Juice";
-                        qtyStore[i] = qty;
-                        wjqty = qty;
-                        price = 7.00 * qty;
-                        tprice += price;
-                        i++;
-                        break;
-                    }
-                    else
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Watermelon Juice";
+                            qtyStore[i] = qty;
+                            WJqty = qty;
+                            price = 7.00 * qty;
+                            tprice += price;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
-                    }
+                    } while (true);
+                }
                 else if (bvgCode == "HJ")
                 {
                     cout << "Quantity: ";
-                    do{
-                    cin >> qty;
-                    if(qty > 0){                    
-                        name[i] = "Honeydew Juice";
-                        qtyStore[i] = qty;
-                        hjqty = qty;
-                        price = 8.00 * qty;
-                        tprice += price;
-                        i++;
-                        break;
-                    }
-                    else
-                        {cout<<"Please enter number: ";}
+                    do
+                    {
+                        cin >> qty;
+                        if (qty > 0)
+                        {
+                            name[i] = "Honeydew Juice";
+                            qtyStore[i] = qty;
+                            HJqty = qty;
+                            price = 8.00 * qty;
+                            tprice += price;
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Please enter number: ";
+                        }
                         cin.clear();
                         cin.ignore();
-                    }while(true);
+                    } while (true);
                 }
                 else if (bvgCode == "TC")
                 {
-                    
-                        cout<<"\nEnter 0 if dont want."<<endl;
-                        cout<<"Hot quantity: ";
-                        do{
+                    cout << "\nEnter 0 if you don't want." << endl;
+                    cout << "Hot quantity: ";
+                    do
+                    {
                         cin >> hot;
-                        if (cin.fail()) { 
+                        if (cin.fail())
+                        {
                             cin.clear();
                             cin.ignore();
-                            cout << "Invalid. Please enter again: ";
+                            cout << "Invalid. Please enter again: "; 
                             continue;
                         }
-                            if (hot > -1){
-                                tcqty = hot;
-                                name[i] = "Teh C Hot";
-                                qtyStore[i] = hot;
-                                price = 4.50 * hot;
-                                tprice += price;
-                                i++;
-                                break;
-                            }
-                        
-                               
-                            }while(true);
-                        cout<<"Cold quantity: ";
-                        do{
+                        if (hot > -1)
+                        {
+                            TCqty = hot;
+                            name[i] = "Teh C Hot";
+                            qtyStore[i] = hot;
+                            price = 4.50 * hot;
+                            tprice += price;
+                            i++;
+                            break;
+                        } 
+                    } while (true);
+                    cout << "Cold quantity: ";
+                    do
+                    {
                         cin >> cold;
-                        if (cin.fail()) { 
+                        if (cin.fail())
+                        {
                             cin.clear();
                             cin.ignore();
-                            cout << "Invalid. Please enter again: ";
+                            cout << "Invalid. Please enter again: "; 
                             continue;
                         }
-
-                            if (cold > -1){
-                                tcqty = cold+hot;
-                                name[i] = "Teh C Cold";
-                                qtyStore[i] = cold;
-                                price = 5.00 * cold;
-                                tprice += price;
-                                i++;
-                                break;
-                            }
-                        
-                              
-                        }while(true);
+                        if (cold > -1)
+                        {
+                            TCqty = cold + hot;
+                            name[i] = "Teh C Cold";
+                            qtyStore[i] = cold;
+                            price = 5.00 * cold;
+                            tprice += price;
+                            i++;
+                            break;
+                        }
+                    } while (true);
                 }
                 else if (bvgCode == "LT")
                 {
-                        cout<<"\nEnter 0 if dont want."<<endl;
-                        cout<<"Hot quantity: ";
-                        do{
+                    cout << "\nEnter 0 if you don't want." << endl;
+                    cout << "Hot quantity: ";
+                    do
+                    {
                         cin >> hot;
-                        if (cin.fail()) { 
+                        if (cin.fail())
+                        {
                             cin.clear();
                             cin.ignore();
-                            cout << "Invalid. Please enter again: ";
+                            cout << "Invalid. Please enter again: "; 
                             continue;
                         }
-                            if (hot > -1){
-                                ltqty = hot;
-                                name[i] = "Lemon Tea Hot";
-                                qtyStore[i] = hot;
-                                price = 4.50 * hot;
-                                tprice += price;
-                                i++;
-                                break;
-                            }
-                            }while(true);
-                        cout<<"Cold quantity: ";
-                        do{ 
+                        if (hot > -1)
+                        {
+                            LTqty = hot;
+                            name[i] = "Lemon Tea Hot";
+                            qtyStore[i] = hot;
+                            price = 4.50 * hot;
+                            tprice += price;
+                            i++;
+                            break;
+                        }
+                    } while (true);
+                    cout << "Cold quantity: ";
+                    do
+                    {
                         cin >> cold;
-                        if (cin.fail()) { 
+                        if (cin.fail())
+                        {
                             cin.clear();
                             cin.ignore();
-                            cout << "Invalid. Please enter again: ";
+                            cout << "Invalid. Please enter again: "; 
                             continue;
                         }
-                            if (cold > -1){
-                                ltqty = cold+hot;
-                                name[i] = "Lemon Tea Cold";
-                                qtyStore[i] = cold;
-                                price = 5.00 * cold;
-                                tprice += price;
-                                i++;
-                                break;
-                            }
-                        }while(true);
+                        if (cold > -1)
+                        {
+                            LTqty = cold + hot;
+                            name[i] = "Lemon Tea Cold";
+                            qtyStore[i] = cold;
+                            price = 5.00 * cold;
+                            tprice += price;
+                            i++;
+                            break;
+                        }
+                    } while (true);
                 }
-                
                 else
                     cout << "Beverages code not available." << endl;
 
             } while (true);
         }
-        else if(category == "C" || category == "3"){
+        else if (category == "C" || category == "3")
+        {
 
-            purchasedA += aqty;
-            purchasedAT += atqty;
-            purchasedATC += atcqty;
-            purchasedD += dqty;
-            purchasedDT += dtqty;
-            purchasedDTC += dtcqty;
-            purchasedC += cqty;
-            purchasedB += bqty;
-            purchasedWJ += wjqty;
-            purchasedHJ += hjqty;
-            purchasedTC +=  tcqty;
-            purchasedLT += ltqty;
+            purchasedA += Aqty;
+            purchasedAT += ATqty;
+            purchasedATC += ATCqty;
+            purchasedD += Dqty;
+            purchasedDT += DTqty;
+            purchasedDTC += DTCqty;
+            purchasedC += Cqty;
+            purchasedB += Bqty;
+            purchasedWJ += WJqty;
+            purchasedHJ += HJqty;
+            purchasedTC += TCqty;
+            purchasedLT += LTqty;
             TotalPurchase(tprice);
-
         }
         else if (category == "M" || category == "4")
         {
-            
-            int aqty = 0, atqty = 0, atcqty = 0, dqty = 0, dtqty = 0, dtcqty = 0, bqty = 0, cqty = 0, wjqty = 0, hjqty = 0, tcqty = 0, ltqty = 0;
+
+            int Aqty=0, ATqty=0, ATCqty=0, Dqty=0, DTqty=0, DTCqty=0, Bqty=0, Cqty=0, WJqty=0, HJqty=0, TCqty=0, LTqty=0;
             system("cls");
             MainMenu();
-
-            
         }
         else
         {
             cout << "Please enter a valid category." << endl;
         }
 
-    }while (true);
-    
+    } while (true);
 }
-//TotalPurchase Function
+// TotalPurchase Function
 void TotalPurchase(double &tprice)
 {
-    system ("cls");
+    system("cls");
     cout << "\n======================================================" << endl;
     cout << "Your total price is: RM" << tprice << endl;
     if (tprice > 40.0)
@@ -599,27 +649,27 @@ void TotalPurchase(double &tprice)
         MainMenu();
     }
 
-    Output(name, qtyStore, tprice, i); //Display the order details
+    Output(name, qtyStore, tprice, i); // Display the order details
 }
-//Output Function
+// Output Function
 void Output(string name[], int qtyStore[], double tprice, int i)
 {
     cout << "\n+==============+" << endl;
     cout << "|  Order List  | " << endl;
     cout << "+==============+" << endl;
-    for (int j = 0; j < i; j++)
+    for (int j=0; j < i; j++)
     {
         cout << j + 1 << ". " << name[j] << " - " << "X" << qtyStore[j] << endl;
     }
     cout << "\nYour total purchase is: RM" << tprice << endl;
     cout << "======================================================" << endl;
 
-    Change(tprice, TotalCust); //Handle payment method and calculate change if have change
+    Change(tprice, TotalCust); // Handle payment method and calculate change if have
 }
-//Change Function
+// Change Function
 void Change(double tprice, int &TotalCust)
 {
-    double amt, change = 0.0;
+    double amt, change=0.0;
     char opt;
 
     cout << "\n+----------------------------+" << endl;
@@ -678,19 +728,21 @@ void Change(double tprice, int &TotalCust)
         else
         {
             cout << "\nInvalid Option!! Please enter Again: ";
-        } 
+        }
     } while (true);
     TotalCust++;
-    total=tprice;
+    total = tprice;
     if (total > highestSale)
         highestSale = total;
     if (total < lowestSale)
         lowestSale = total;
-    totalSales+=tprice;
+    totalSales += tprice;
     MainMenu();
 }
-//Admin Login Function
-void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int &TotalCust, int &purchasedA, int &purchasedAT, int &purchasedATC, int &purchasedD, int &purchasedDT, int &purchasedDTC, int &purchasedC, int &purchasedB, int &purchasedWJ, int &purchasedHJ, int &purchasedTC, int &purchasedLT)
+// Admin Login Function
+void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int &TotalCust,
+                int &purchasedA, int &purchasedAT, int &purchasedATC, int &purchasedD, int &purchasedDT, int &purchasedDTC,
+                int &purchasedC, int &purchasedB, int &purchasedWJ, int &purchasedHJ, int &purchasedTC, int &purchasedLT)
 {
     char opt;
     string passlog;
@@ -700,13 +752,9 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
         system("cls");
         cout << "Enter password: ";
         cin >> passlog;
-       
 
-
- 
         if (passlog == passM)
         {
-       
             cout << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "|                     ADMIN PAGE                   |" << endl;
@@ -721,9 +769,10 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
             cout << "+--------------+" << endl;
             cout << "|TOTAL CUSTOMER| [ " << TotalCust << " ]" << endl;
             cout << "+--------------+" << endl;
-            cout << endl << endl;
+            cout << endl
+                 << endl;
             cout << "+--------------------------------------------------+" << endl;
-            cout << "|          Food              |      PURCHASED      |" << endl;
+            cout << "|          Food              |        SOLD         |" << endl;
             cout << "|--------------------------------------------------|" << endl;
             cout << "|                     [Burger]                     |" << endl;
             cout << "+--------------------------------------------------+" << endl;
@@ -738,22 +787,22 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
             cout << "+--------------------------------------------------+" << endl;
             cout << "          Carbonara          |" << "\t\t" << purchasedC << endl;
             cout << "          Bolognese          |" << "\t\t" << purchasedB << endl;
-            //cout << "+--------------------------------------------------+" << endl;
-            cout << endl << endl;
+            cout << endl
+                 << endl;
             cout << "+--------------------------------------------------+" << endl;
-            cout << "|          Beverages         |      PURCHASED      |" << endl;
+            cout << "|          Beverages         |        SOLD         |" << endl;
             cout << "|--------------------------------------------------|" << endl;
             cout << "|                  [Minuman Bujang]                |" << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "       Watermelon Juice      |" << "\t\t" << purchasedWJ << endl;
-            cout << "       Honeyew Juice         |" << "\t\t" <<purchasedHJ << endl;
+            cout << "       Honeydew Juice         |" << "\t\t" << purchasedHJ << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "|                   [Minuman Lega]                 |" << endl;
             cout << "+--------------------------------------------------+" << endl;
             cout << "            Teh C            |" << "\t\t" << purchasedTC << endl;
             cout << "          Lemon Tea          |" << "\t\t" << purchasedLT << endl;
-            //cout << "+--------------------------------------------------+" << endl;
-            cout << endl << endl;
+            cout << endl
+                 << endl;
             cout << "+------------------------------+" << endl;
             cout << "|    X   |        Exit         |" << endl;
             cout << "|--------+---------------------|" << endl;
@@ -762,20 +811,28 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
             cout << "Enter your choice: ";
             cin >> opt;
 
-            if (toupper(opt) == 'M'){
+            do{
+            if (toupper(opt) == 'M')
+            {
                 system("cls");
                 MainMenu();
-            }else if (toupper(opt) == 'X')
+            }
+            else if (toupper(opt) == 'X')
             {
                 cout << "Thank you for using our system!";
                 exit(0);
             }
+            else
+            {
+                cout << "Invalid choice. Please try again: ";
+            }
+            }while (toupper(opt)!='M' && toupper(opt)!='X');
         }
         else
             cout << "Entered wrong password." << endl;
     } while (passlog != passM);
 }
-//toupper function
+// toupper function
 string toUpperCase(const string &str)
 {
     string result = str;
