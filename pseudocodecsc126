@@ -1,0 +1,527 @@
+
+
+
+DECLARE string name[100]
+DECLARE int qtyStore[100]                                              
+DECLARE string passM = "12345"                                       
+DECLARE double tprice = 0.0, totalSales = 0.0                                                                            
+DECLARE double total = 0.0, highestSale = -99999, lowestSale = 99999                                                                                  
+DECLARE int TotalCust = 0,i = 0                                             
+DECLARE int purchasedA = 0, purchasedAT = 0, purchasedATC = 0, purchasedD = 0,
+            purchasedDT = 0, purchasedDTC = 0, purchasedB = 0, purchasedC = 0,
+            purchasedWJ = 0, purchasedHJ = 0, purchasedTC = 0, purchasedLT = 0
+DECLARE int aqty = 0, atqty = 0, atcqty = 0, dqty = 0, dtqty = 0, dtcqty = 0,
+            bqty = 0, cqty = 0, wjqty = 0, hjqty = 0, tcqty = 0, ltqty = 0, hot = 0, cold = 0
+
+START
+    CALL function greetings()
+END
+
+
+
+
+
+
+
+START
+    FUNCTION greetings()
+    DECLARE char key
+    DISPLAY "+----------------------------------------+
+             |     WELCOME   TO   CAFE KAPAL LAUD     |
+             +----------------------------------------+"
+             "Press any key [Q] to continue..."
+    GET key input
+    CALL FUNCTION getchar()
+    CALL FUNCTION MainMenu()
+    FUNCTION END
+END
+
+
+
+
+
+
+START
+    FUNCTION MainMenu()
+    DECLARE char userType
+    DO
+        DISPLAY "+-------------------------------------+
+                 |              MAIN MENU              |
+                 +--------+----------------------------+
+                 |    1   |       Administrator        |
+                 +--------+----------------------------+
+                 |    2   |       Customer             |
+                 +-------------------------------------+
+                 |    3   |       Back                 |
+                 +-------------------------------------+"
+                 "Login as: "
+        GET userType input
+
+        IF userType == 1
+            CALL FUNCTION adminLogin(totalSales, highestSale, lowestSale, TotalCust, purchasedA, purchasedAT, purchasedATC, purchasedD, purchasedDT, purchasedDTC, purchasedC, purchasedB, purchasedWJ, purchasedHJ, purchasedTC, purchasedLT)
+        ELSE IF userType = 2          
+            DECLARE i=0
+            DECLARE tprice=0.0
+            DECLARE total=0.0
+            CALL FUNCTION customerLogin()
+        ELSE IF userType = 3          
+            CLEAR SCREEN
+            CALL FUNCTION greetings()
+        ELSE
+            DISPLAY "Incorrect. Please enter again."
+        END IF
+    WHILE userType != 3
+    END DO WHILE
+    FUNCTION END 
+END
+
+
+
+
+
+
+
+START 
+    FUNCTION customerLogin()
+    DECLARE char opt
+    CLEAR SCREEN
+    DISPLAY "+--------+-------------------------+
+             |    O   |     [O] Order           |
+             |--------+-------------------------|
+             |    M   |     [M] Main Menu       |
+             +----------------------------------+"
+             "Enter your choice:"
+    DO
+    GET opt input
+
+    IF opt == M OR opt == 1
+        CALL FUNCTION MainMenu()
+    ELSE IF pt == O OR pt= 2
+       CALL FUNCTION Order(name, qtyStore, tprice, i)
+       ELSE 
+       DISPLAY "Invalid. Please enter again:"
+    END IF ELSE
+    WHILE opt != M AND opt != 2 AND opt != O AND opt != 1
+    END DO WHILE
+    FUNCTION END
+END
+
+
+
+
+
+
+
+START
+    FUNCTION FoodMenu()
+    CLEAR SCREEN
+    DISPLAY "+----------------------------------------------------------+
+             |    Code    |        Food             |      Price        |
+             |------------|-------------------------|-------------------|
+             |            |       [Burger]          |                   |
+             |------------|-------------------------|-------------------|
+             |     A      |         Ayam            |     RM 5.00       |
+             |------------|-------------------------|-------------------|
+             |     AT     |      Ayam + Telur       |     RM 6.00       |
+             |------------|-------------------------|-------------------|
+             |     ATC    |  Ayam + Telur + Cheese  |     RM 7.00       |
+             |------------|-------------------------|-------------------|
+             |     D      |        Daging           |     RM 5.00       |
+             |------------|-------------------------|-------------------|
+             |     DT     |     Daging + Telur      |     RM 6.00       |
+             |------------|-------------------------|-------------------|
+             |     DTC    |     Daging + Telur      |     RM 7.00       |
+             |            |       + Cheese          |                   |
+             |------------|-------------------------|-------------------|
+             |            |       [Spaghetti]       |                   |
+             |------------|-------------------------|-------------------|
+             |      C     |        Carbonara        |     RM 13.95      |
+             |------------|-------------------------|-------------------|
+             |      B     |        Bolognese        |     RM 13.95      |
+             +----------------------------------------------------------+"
+    FUNCTION END
+END
+
+
+
+START 
+    FUNCTION BeveragesMenu()
+    CLEAR SCREEN
+    DISPLAY "+-------------------------------------------------+
+             |    Code    |       Beverages       |    Price   |
+             |------------|-----------------------|------------|
+             |            |    [Minuman Bujang]   |            |
+             |------------|-----------------------|------------|
+             |     WJ     |   Watermelon Juice    |   RM 7.00  |
+             |------------|-----------------------|------------|
+             |     HJ     |    Honeydew Juice     |   RM 8.00  |
+             |------------|-----------------------|------------|--------------+
+             |            |    [Minuman Lega]     |     Hot    |     Cold     |
+             |------------|-----------------------|------------|--------------|
+             |     TC     |         Teh C         |   RM 4.50  |   RM 5.00    |
+             |------------|-----------------------|------------|--------------|
+             |     LT     |       Lemon Tea       |   RM 4.50  |   RM 5.00    |
+             |----------------------------------------------------------------+"
+    FUNCTION END
+END
+
+
+
+
+
+
+
+START
+    FUNCTION Order(string name[], int qtyStore[], double &tprice, int &i) 
+    DECLARE string category, FoodCode, bvgCode, temp
+    DECLARE int qty
+    DECLARE double price
+    DECLARE int aqty = 0, atqty = 0, atcqty = 0, dqty = 0, dtqty = 0, dtcqty = 0, bqty = 0, cqty = 0, wjqty = 0, hjqty = 0, tcqty = 0, ltqty = 0, hot = 0, low = 0,
+    
+    DO
+        DISPLAY         "WELCOME CUSTOMER !"        
+                "+--------------------------------+"
+                "|    1   |     [F] Food          |"
+                "|--------+-----------------------|"
+                "|    2   |     [B] Beverages     |"
+                "|--------+-----------------------|"
+                "|    3   |     [C] Confirm Order |"
+                "|--------+-----------------------|"
+                "|    4   |     [M] Main Menu     |"
+                "+--------------------------------+"
+                "Please select your choice:"
+        GET category input
+        SET category TO UpperCase
+        IF category == 1 OR category == F OR category == FOOD
+            CALL FUNCTION FoodMenu()
+            DISPLAY "+--------------+
+                    |     FOOD     |
+                    +--------------+"
+            DO
+                DISPLAY "Enter food code (X to exit)"
+                GET FoodCode input
+                SET FoodCode TO UpperCase
+                    IF FoodCode == X
+                        BREAK
+                    IF FoodCode == A
+                        DISPLAY "Quantity:"
+                        DO
+                        GET qty input
+                        IF qty greater than 0
+                            name[i] = "Burger Ayam"
+                            qtyStore[i] = qty
+                            price = 5.00 * qty
+                            tprice += price
+                            aqty = qty
+                            i++
+                            BREAK
+                        ELSE 
+                            DISPLAY "Please enter number:"
+                            CLEAR invalid input
+                        END IF ELSE
+                        WHILE TRUE
+                        END DO WHILE
+
+                    // Other food codes have the same logic as above but every food code will have dIFferent price and name,
+                       same for the beverages except the one that has hot and cold option.
+
+                    //This is the logic for the beverages that has hot and cold option
+
+                    ELSE IF bvgCode == TC
+                        DISPLAY "Enter 0 IF dont want."
+                        DISPLAY "Hot quantity:" 
+                        DO
+                        GET hot input
+                            IF hot is INVALID 
+                                DISPLAY "Invalid. Please enter again:" 
+                                CLEAR invalid input
+                                CONTINUE
+                            IF  hot > -1
+                                tcqty = hot;
+                                name[i] = "Teh C Hot"
+                                qtyStore[i] = hot
+                                price = 4.50 * hot
+                                tprice += price
+                                i++
+                                BREAK
+                            END IF
+                        WHILE TRUE
+                        END DO WHILE
+
+                        DISPLAY "Cold quantity:" 
+                        DO
+                        GET cold input
+                            IF cold is INVALID 
+                                DISPLAY "Invalid. Please enter again:" 
+                                CLEAR invalid input
+                                CONTINUE
+
+                            IF cold > -1
+                                tcqty = cold+hot;
+                                name[i] = "Teh C Cold";
+                                qtyStore[i] = cold;
+                                price = 5.00 * cold;
+                                tprice += price;
+                                i++;
+                                BREAK
+                            END IF     
+                        WHILE TRUE
+                        END DO WHILE
+                    ELSE
+                        DISPLAY "Beverages code not available."
+                    END IF ELSE
+            WHILE TRUE
+            END DO WHILE
+        ELSE IF category == C OR category == 3
+            purchasedA += aqty;
+            purchasedAT += atqty;
+            purchasedATC += atcqty;
+            purchasedD += dqty;
+            purchasedDT += dtqty;
+            purchasedDTC += dtcqty;
+            purchasedC += cqty;
+            purchasedB += bqty;
+            purchasedWJ += wjqty;
+            purchasedHJ += hjqty;
+            purchasedTC +=  tcqty;
+            purchasedLT += ltqty;
+            CALL FUNCTION TotalPurchase(tprice)
+        ELSE IF category == M OR category == 4
+            DECLARE int aqty = 0, atqty = 0, atcqty = 0, dqty = 0, dtqty = 0, dtcqty = 0, bqty = 0, cqty = 0, wjqty = 0, hjqty = 0, tcqty = 0, ltqty = 0
+            CLEAR screen
+            CALL FUNCTION MainMenu()
+        ELSE
+            DISPLAY "Please enter a valid category."
+        END IF ELSE 
+    WHILE TRUE
+    END DO WHILE
+    FUNCTION END
+END
+
+
+
+
+
+
+
+START
+    FUNCTION TotalPurchase(double &tprice)
+    CLEAR screen
+    DISPLAY "======================================================"
+    DISPLAY "Your total price is: RM", tprice
+    IF tprice > 40.0
+        tprice = tprice - (tprice * 0.1)
+        DISPLAY, fixed, setprecision(2)
+        DISPLAY "You have received a 10% Discount."
+    ELSE  IF tprice == 0.0
+        DISPLAY "You have not purchased anything."
+        CALL FUNCTION MainMenu()
+    END IF ELSE
+    CALL FUNCTION Output(name, qtyStore, tprice, i); //Display the order details
+    FUNCTION END
+END
+
+
+
+
+
+
+START
+    FUNCTON Output(string name[], int qtyStore[], double tprice, int i)
+        DISPLAY "+==============+"
+        DISPLAY "|  Order List  |" 
+        DISPLAY "+==============+"
+        FOR each item in the order
+            DISPLAY item name and quantity
+        END FOR
+        DISPLAY "Your total purchase is: RM", tprice
+        DISPLAY "======================================================"
+    CALL FUNCTION Change(tprice, TotalCust)
+    FUNCTION END
+END
+
+
+
+
+
+FUNCTION Change(double tprice, int &TotalCust)
+    DECLARE double amt, change = 0.0
+    DECLARE char opt
+    DISPLAY "+----------------------------+
+             | Choose your Payment Method | 
+             +----------------------------+
+             |   1   |  Cash              |
+             +----------------------------+
+             |   2   |  Debit             |
+             +----------------------------+
+             Enter method: "
+    DO
+        GET opt input
+            IF opt == 1
+                DISPLAY "Enter amount: RM"
+                DO
+                    GET amt input
+                        IF amt < tprice
+                            DISPLAY "Money not enough to pay please enter again: RM"
+                        ELSE IF amt > tprice
+                            change = amt - tprice
+                                IF  change > 0.0
+                                    DISPLAY "You have RM", change " change."
+                                    DISPLAY "Please go to counter to collect your change."
+                                    DISPLAY "======================================================"
+                                    BREAK
+                        ELSE IF amt = tprice
+                            DISPLAY "No change to collect"
+                            DISPLAY "======================================================"
+                            BREAK
+                        END IF ELSE 
+                WHILE TRUE
+                END DO WHILE
+                BREAK
+            ELSE IF opt == 2
+                tprice = tprice - (tprice * 0.1)
+                DISPLAY , fixed,  setprecision(2)
+                DISPLAY "Receive 10% Discount"
+                DISPLAY "Total Price: RM" << tprice
+                DISPLAY "RM", tprice " has been deducted from your account."
+                DISPLAY "======================================================"
+                BREAK
+            ELSE
+                DISPLAY "Invalid Option!! Please enter Again: "
+                END IF ELSE 
+    WHILE TRUE
+    END DO WHILE
+        TotalCust++
+        total=tprice
+        IF total > highestSale
+            highestSale = total
+        END IF 
+        IF total < lowestSale
+            lowestSale = total
+        END IF
+        totalSales+=tprice
+        CALL FUNCTION MainMenu()
+    FUNCTION END 
+END
+
+
+
+
+
+
+
+
+
+START
+    FUNCTION adminLogin(double &totalSales, double &highestSale, double &lowestSale, int &TotalCust, int &purchasedA, int &purchasedAT,int &purchasedATC, int &purchasedD,
+                        int &purchasedDT,int &purchasedDTC, int &purchasedC, int &purchasedB, int &purchasedWJ, int &purchasedHJ, int &purchasedTC, int &purchasedLT)
+        DECLARE char opt
+        DECLARE string passlog
+        CLEAR SCREEN
+        DO
+            DISPLAY "Enter password: "
+            GET passlog input
+            IF passlog == passM
+                DO
+                    DISPLAY "+------------------------------+
+                            |    1   |     View  Sales     | 
+                            +------------------------------+
+                            |    2   |   View Items Sold   | 
+                            +------------------------------+
+                            |    X   |        Exit         | 
+                            |--------+---------------------|
+                            |    M   |      Main Menu      |
+                            +------------------------------+
+                            Enter your choice: "
+                    GET opt input
+                    IF SET opt TO UperCase == M
+                        CLEAR SCREEN
+                        CALL FUNCTION MainMenu()
+                    ELSE IF SET opt TO UpperCase == X
+                        DISPLAY "Thank you for using our system!"
+                        END PROGRAM
+                    ELSE IF SET opt TO UpperCase == 1
+                        IF totalSales == 0
+                            CLEAR SCREEN
+                            DISPLAY "+--------------------------------------------------+
+                                    |                     ADMIN PAGE                   |
+                                    +--------------------------------------------------+
+
+                                    +--------------+ 
+                                    | TOTAL  SALES | [ No Sales Yet ]
+                                    +--------------+
+                                    | HIGHEST SALE | [ No Sales Yet ]
+                                    +--------------+ 
+                                    | LOWEST SALE  | [ No Sales Yet ] 
+                                    +--------------+ 
+                                    |TOTAL CUSTOMER| [ No Sales Yet ] 
+                                    +--------------+" 
+                        ELSE
+                            CLEAR SCREEN
+                            DISPLAY "+--------------------------------------------------+
+                                    |                     ADMIN PAGE                   | 
+                                    +--------------------------------------------------+ 
+
+                                    +--------------+
+                                    | TOTAL  SALES | [ RM , totalSales ,  ]
+                                    +--------------+ 
+                                    | HIGHEST SALE | [ RM , highestSale ,  ]
+                                    +--------------+
+                                    | LOWEST SALE  | [ RM , lowestSale ,  ]
+                                    +--------------+ 
+                                    |TOTAL CUSTOMER| [  , TotalCust ,  ] 
+                                    +--------------+" 
+                        END IF ELSE
+                    ELSE IF SET opt TO UperCase == 2
+                        CLEAR SCREEN
+                        DISPLAY "+--------------------------------------------------+
+                                |          Food              |      PURCHASED      | 
+                                |--------------------------------------------------| 
+                                |                     [Burger]                     |
+                                +--------------------------------------------------+
+                                        Ayam              |  , \t\t  , purchasedA 
+                                    Ayam + Telur         |  , \t\t  , purchasedAT 
+                                Ayam + Telur + Cheese   |  , \t\t  , purchasedATC 
+                                        Daging             |  , \t\t , purchasedD 
+                                    Daging + Telur        |  , \t\t , purchasedDT 
+                                Daging + Telur + Cheese   |  , \t\t ,  purchasedDTC 
+                                +--------------------------------------------------+
+                                |                     [Spaghetti]                  |
+                                +--------------------------------------------------+ 
+                                        Carbonara          |  ,  \t\t  , purchasedC 
+                                        Bolognese          |  ,  \t\t  , purchasedB 
+                                +--------------------------------------------------+ 
+                                +--------------------------------------------------+ 
+                                |          Beverages         |      PURCHASED      | 
+                                |--------------------------------------------------| 
+                                |                  [Minuman Bujang]                | 
+                                +--------------------------------------------------+ 
+                                    Watermelon Juice      |  ,  \t\t  ,  purchasedWJ 
+                                    Honeyew Juice         |  ,  \t\t  ,  purchasedHJ 
+                                +--------------------------------------------------+ 
+                                |                   [Minuman Lega]                 | 
+                                +--------------------------------------------------+ 
+                                        Teh C            |  ,  \t\t  , purchasedTC 
+                                        Lemon Tea          |  ,  \t\t  , purchasedLT 
+                                +--------------------------------------------------+" 
+                    ELSE
+                        DISPLAY "Invalid input."
+                    END IF ELSE 
+                WHILE SET opt TO UpperCase !=X AND SET opt TO UpperCase != M
+                END DO WHILE
+            ELSE
+                DISPLAY "Entered wrong password." 
+            END IF ELSE
+        WHILE passlog != passM
+        FUNCTION END
+END
+
+
+START
+    FUNCTION toUpperCase(inputString)
+        DECLARE string result = str
+        for (char &ch : result)
+            SET ch TO uppercase version of ch
+        END FOR
+        RETURN result
+END FUNCTION
