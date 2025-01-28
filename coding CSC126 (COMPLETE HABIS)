@@ -766,6 +766,8 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
 
         if (passlog == passM)
         {
+            cout << endl;
+            cout << "Welcome!";
             do{
                 cout << endl;
                 cout << "+------------------------------+" << endl;
