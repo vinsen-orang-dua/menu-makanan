@@ -135,18 +135,18 @@ void customerLogin()
     {
         cin >> opt;
 
-        if (toupper(opt) == 'M' || opt == '2')
+        if (toupper(opt) == 'M')
         {
             system("cls");
             MainMenu();
         }
-        else if (toupper(opt) == 'O' || opt == '1')
+        else if (toupper(opt) == 'O')
         {
             Order(name, qtyStore, tprice, i); // Take order from customer
         }
         else
             cout << "Invalid. Please enter again: ";
-    } while (toupper(opt) != 'M' && opt != '2' && toupper(opt) != 'O' && opt != '1');
+    } while (toupper(opt) != 'M' && toupper(opt) != 'O');
 }
 
 // Food Menu Function
