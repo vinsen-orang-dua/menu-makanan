@@ -46,7 +46,7 @@ int qtyStore[100];                                          // Array to store qu
 int TotalCust=0;                                            // counter for customer
 int Aqty=0, ATqty=0, ATCqty=0, Dqty=0, DTqty=0, DTCqty=0, 
     Bqty=0, Cqty=0, WJqty=0, HJqty=0, TChot=0, TCcold=0, 
-    TCqty=0, LThot=0, LTcold=0, LTqty=0, hot=0, cold=0;     // variables to count each item purchased
+    TCqty=0, LThot=0, LTcold=0, LTqty=0, hot=0, cold=0;     // temporary variables to count each item purchased
 int purchasedA=0, purchasedAT=0, purchasedATC=0, purchasedD=0,
     purchasedDT=0, purchasedDTC=0, purchasedB=0, purchasedC=0,
     purchasedWJ=0, purchasedHJ=0, purchasedTC=0, purchasedLT=0; // variables to count each item purchased once confirmed
@@ -182,21 +182,21 @@ void FoodMenu()
 void BeveragesMenu()
 {
     cout << endl;
-    cout << "+-------------------------------------------------+" << endl;
-    cout << "|    Code    |       Beverages       |    Price   |" << endl;
-    cout << "|------------|-----------------------|------------|" << endl;
-    cout << "|            |    [Minuman Bujang]   |            |" << endl;
-    cout << "|------------|-----------------------|------------|" << endl;
-    cout << "|     WJ     |   Watermelon Juice    |   RM 7.00  |" << endl;
-    cout << "|------------|-----------------------|------------|" << endl;
-    cout << "|     HJ     |    Honeydew Juice     |   RM 8.00  |" << endl;
-    cout << "|------------|-----------------------|------------|--------------+" << endl;
-    cout << "|            |    [Minuman Lega]     |     Hot    |     Cold     |" << endl;
-    cout << "|------------|-----------------------|------------|--------------|" << endl;
-    cout << "|     TC     |         Teh C         |   RM 4.50  |   RM 5.00    |" << endl;
-    cout << "|------------|-----------------------|------------|--------------|" << endl;
-    cout << "|     LT     |       Lemon Tea       |   RM 4.50  |   RM 5.00    |" << endl;
-    cout << "|----------------------------------------------------------------+" << endl;
+    cout << "+-----------------------------------------+" << endl;
+    cout << "|  Code  |     Beverages     |    Price   |" << endl;
+    cout << "|--------|-------------------|------------|" << endl;
+    cout << "|        |  [Minuman Bujang] |            |" << endl;
+    cout << "|--------|-------------------|------------|" << endl;
+    cout << "|   WJ   | Watermelon Juice  |   RM 7.00  |" << endl;
+    cout << "|--------|-------------------|------------|" << endl;
+    cout << "|   HJ   |  Honeydew Juice   |   RM 8.00  |" << endl;
+    cout << "|--------|-------------------|------------|--------------+" << endl;
+    cout << "|        |   [Minuman Lega]  |     Hot    |     Cold     |" << endl;
+    cout << "|--------|-------------------|------------|--------------|" << endl;
+    cout << "|   TC   |       Teh C       |   RM 4.50  |   RM 5.00    |" << endl;
+    cout << "|--------|-------------------|------------|--------------|" << endl;
+    cout << "|   LT   |     Lemon Tea     |   RM 4.50  |   RM 5.00    |" << endl;
+    cout << "+--------------------------------------------------------+" << endl;
 }
 // Order Function
 void Order(string name[], int qtyStore[], double &tprice, int &i)
@@ -219,7 +219,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
         cout << "|--------|-----------------------|" << endl;
         cout << "|    3   |     [C] Confirm Order |" << endl;
         cout << "|--------|-----------------------|" << endl;
-        cout << "|    4   |     [M] Main Menu     |" << endl;
+        cout << "|    4   |     [N] Cancel Order  |" << endl;
         cout << "+--------------------------------+" << endl;
         cout << "Please select your choice: ";
         cin >> category;
@@ -622,7 +622,7 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
             purchasedLT += LTqty;
             TotalPurchase(tprice);
         }
-        else if (category == "M" || category == "4")
+        else if (category == "N" || category == "4")
         {
 
             int Aqty=0, ATqty=0, ATCqty=0, Dqty=0, DTqty=0, DTCqty=0, 
