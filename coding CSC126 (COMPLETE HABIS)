@@ -876,13 +876,13 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
             cout << "Entered wrong password." << endl;
     }while (passlog != passM);
 }
-// toupper function
-string toUpperCase(const string &str)
+// toupper function to change string into uppercase
+string toUpperCase(const string &menu)
 {
-    string result = str;
-    for (char &ch : result)
+    string result = menu; // takes input from menu code strings
+    for (char &convert : result) // makes a modification of each character for the string so it is all uppercase
     {
-        ch = toupper(ch);
+        convert = toupper(convert);
     }
     return result;
 }
