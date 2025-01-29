@@ -884,5 +884,5 @@ string toUpperCase(const string &menu)
     {
         convert = toupper(convert);
     }
-    return result;
+    return result; // return the modified string
 }
