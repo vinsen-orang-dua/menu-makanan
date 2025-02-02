@@ -81,11 +81,11 @@ void MainMenu()
         cout << endl;
         cout << "+-------------------------------------+" << endl;
         cout << "|              MAIN MENU              |" << endl;
-        cout << "|-------------------------------------|" << endl;
+        cout << "+-------------------------------------+" << endl;
         cout << "|    1   |       Administrator        |" << endl;
-        cout << "|--------|----------------------------|" << endl;
+        cout << "+--------+----------------------------+" << endl;
         cout << "|    2   |       Customer             |" << endl;
-        cout << "|--------|----------------------------|" << endl;
+        cout << "+--------+----------------------------+" << endl;
         cout << "|    3   |       Back                 |" << endl;
         cout << "+-------------------------------------+" << endl;
         cout << "Login as: ";
@@ -127,7 +127,7 @@ void customerLogin()
          << endl;
     cout << "+----------------------------------+" << endl;
     cout << "|    O   |     [O] Order           |" << endl;
-    cout << "|--------|-------------------------|" << endl;
+    cout << "|--------+-------------------------|" << endl;
     cout << "|    M   |     [M] Main Menu       |" << endl;
     cout << "+----------------------------------+" << endl;
     cout << "Enter your choice: ";
@@ -214,11 +214,11 @@ void Order(string name[], int qtyStore[], double &tprice, int &i)
         cout << "        WELCOME CUSTOMER !        " << endl;
         cout << "+--------------------------------+" << endl;
         cout << "|    1   |     [F] Food          |" << endl;
-        cout << "|--------|-----------------------|" << endl;
+        cout << "|--------+-----------------------|" << endl;
         cout << "|    2   |     [B] Beverages     |" << endl;
-        cout << "|--------|-----------------------|" << endl;
+        cout << "|--------+-----------------------|" << endl;
         cout << "|    3   |     [C] Confirm Order |" << endl;
-        cout << "|--------|-----------------------|" << endl;
+        cout << "|--------+-----------------------|" << endl;
         cout << "|    4   |     [N] Cancel Order  |" << endl;
         cout << "+--------------------------------+" << endl;
         cout << "Please select your choice: ";
@@ -680,9 +680,9 @@ void Change(double tprice, int &TotalCust)
 
     cout << "\n+----------------------------+" << endl;
     cout << "| Choose your Payment Method | " << endl;
-    cout << "|----------------------------|" << endl;
+    cout << "+----------------------------+" << endl;
     cout << "|   1   |  Cash              |" << endl;
-    cout << "|-------|--------------------|" << endl;
+    cout << "+----------------------------+" << endl;
     cout << "|   2   |  Debit             |" << endl;
     cout << "+----------------------------+" << endl;
     cout << "Enter method: ";
@@ -874,6 +874,7 @@ void adminLogin(double &totalSales, double &highestSale, double &lowestSale, int
         }
         else
             cout << "Entered wrong password." << endl;
+            MainMenu();
     }while (passlog != passM);
 }
 // toupper function to change string into uppercase
