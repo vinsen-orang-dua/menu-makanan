@@ -1,1 +1,93 @@
+import java.io.*;
+import java.util.StringTokenizer;
 
+public class User{
+    protected int userID;
+    protected String password;
+    private final String FILE_NAME = "users.txt";
+    
+    public User(int userID, String password){
+        this.userID = userID;
+        this.password = password;
+    }
+    public void setUserID(int userID){
+        this.userID = userID;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public int getUserID(){
+        return userID;
+    }
+    public String password(){
+        return password;
+    }
+    public void signUp(){
+        try{
+            if (userExists()){
+                System.out.println("Username already exists.");
+                return;
+            }
+            
+            FileWriter fw = new FileWriter(FILE_NAME, true);
+            fw.write(userID + "," + password + "\n");
+            fw.close();
+            System.out.println("Sign up successful!");
+        }
+        catch (IOException e){
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+    public boolean login(){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(FILE_NAME));
+            String line;
+            while ((line = br.readLine()) != null){
+                StringTokenizer st = new StringTokenizer(line, ",");
+                int savedUserID = Integer.parseInt(st.nextToken());
+                String savedPassword = st.nextToken();
+                
+                if (savedUserID == userID && savedPassword.equals(password)){
+                    br.close();
+                    return true;
+                }
+            }
+            br.close();
+        }
+        catch (IOException e){
+            System.out.println("Error reading from file: " + e.getMessage());
+        }
+        return false;
+    }
+    private boolean userExists(){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(FILE_NAME));
+            String line;
+            while ((line = br.readLine()) != null){
+                StringTokenizer st = new StringTokenizer(line, ",");
+                int savedUserID = Integer.parseInt(st.nextToken());
+                
+                if (savedUserID == userID){
+                    br.close();
+                    return true;
+                }
+            }
+            br.close();
+        }
+        catch (IOException e){
+            System.out.println("Error reading from file: " + e.getMessage());
+        }
+        return false;
+    }
+    public boolean adminLogin(){
+        final int adminID = 169171;
+        final String adminPass = "kapalLaud2";
+        
+        if (userID == adminID && password.equals(adminPass)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
