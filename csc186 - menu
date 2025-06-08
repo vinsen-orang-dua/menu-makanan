@@ -1,0 +1,198 @@
+public class Menu {
+
+    private double Ap = 5.00;
+    private double ATp = 6.00;
+    private double ATCp = 7.00;
+    private double Dp = 5.00;
+    private double DTp = 6.00;
+    private double DTCp = 7.00;
+    private double Cp = 13.95;
+    private double Bp = 13.95;
+    private double WJp = 7.00;
+    private double HJp = 8.00;
+    private double TChp = 4.50;
+    private double TCcp = 5.00;
+    private double LThp = 4.50;
+    private double LTcp = 5.00;
+    
+    
+    public Menu(double Ap, double ATp, double ATCp, double Dp, double DTp, double DTCp, double Cp, double Bp, double WJp, double HJp, double TChp, double TCcp, double LThp, double LTcp) {
+        this.Ap = Ap;
+        this.ATp = ATp;
+        this.ATCp = ATCp;
+        this.Dp = Dp;
+        this.DTp = DTp;
+        this.DTCp = DTCp;
+        this.Cp = Cp;
+        this.Bp = Bp;
+        this.WJp = WJp;
+        this.HJp = HJp;
+        this.TChp = TChp;
+        this.TCcp = TCcp;
+        this.LThp = LThp;
+        this.LTcp = LTcp;
+    }
+    
+
+    public void setAp(double Ap) {
+        this.Ap = Ap;
+    }
+
+    public void setATp(double ATp) {
+        this.ATp = ATp;
+    }
+
+    public void setATCp(double ATCp) {
+        this.ATCp = ATCp;
+    }
+
+    public void setDp(double Dp) {
+        this.Dp = Dp;
+    }
+
+    public void setDTp(double DTp) {
+        this.DTp = DTp;
+    }
+
+    public void setDTCp(double DTCp) {
+        this.DTCp = DTCp;
+    }
+
+    public void setCp(double Cp) {
+        this.Cp = Cp;
+    }
+
+    public void setBp(double Bp) {
+        this.Bp = Bp;
+    }
+
+    public void setWJp(double WJp) {
+        this.WJp = WJp;
+    }
+
+    public void setHJp(double HJp) {
+        this.HJp = HJp;
+    }
+
+    public void setTChp(double TChp) {
+        this.TChp = TChp;
+    }
+
+    public void setTCcp(double TCcp) {
+        this.TCcp = TCcp;
+    }
+
+    public void setLThp(double LThp) {
+        this.LThp = LThp;
+    }
+
+    public void setLTcp(double LTcp) {
+        this.LTcp = LTcp;
+    }
+
+    public double getAp() {
+        return Ap;
+    }
+
+    public double getATp() {
+        return ATp;
+    }
+
+    public double getATCp() {
+        return ATCp;
+    }
+
+    public double getDp() {
+        return Dp;
+    }
+
+    public double getDTp() {
+        return DTp;
+    }
+
+    public double getDTCp() {
+        return DTCp;
+    }
+
+    public double getCp() {
+        return Cp;
+    }
+
+    public double getBp() {
+        return Bp;
+    }
+
+    public double getWJp() {
+        return WJp;
+    }
+
+    public double getHJp() {
+        return HJp;
+    }
+
+    public double getTChp() {
+        return TChp;
+    }
+
+    public double getTCcp() {
+        return TCcp;
+    }
+
+    public double getLThp() {
+        return LThp;
+    }
+
+    public double getLTcp() {
+        return LTcp;
+    } 
+    
+    
+      public void foodList() {
+    System.out.println();
+    System.out.println("+----------------------------------------------------------+");
+    System.out.println("|    Code    |        Food              |      Price        |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|            |       [Burger]           |                   |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|     A      |         Ayam             |     RM 5.00       |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|     AT     |      Ayam + Telur        |     RM 6.00       |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|     ATC    |  Ayam + Telur + Cheese   |     RM 7.00       |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|     D      |        Daging            |     RM 5.00       |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|     DT     |     Daging + Telur       |     RM 6.00       |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|     DTC    |  Daging + Telur + Cheese |     RM 7.00       |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|            |       [Spaghetti]        |                   |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|      C     |        Carbonara         |     RM 13.95      |");
+    System.out.println("|------------|--------------------------|-------------------|");
+    System.out.println("|      B     |        Bolognese         |     RM 13.95      |");
+    System.out.println("+----------------------------------------------------------+");
+}
+
+    
+    
+    public void beveList() {
+    System.out.println();
+    System.out.println("+---------------------------------------------------------+");
+    System.out.println("|  Code  |     Beverages     |    Price                   |");
+    System.out.println("|--------|-------------------|----------------------------|");
+    System.out.println("|        |  [Minuman Bujang] |            |               |");
+    System.out.println("|--------|-------------------|------------|---------------|");
+    System.out.println("|   WJ   | Watermelon Juice  |   RM 7.00  |               |");
+    System.out.println("|--------|-------------------|------------|---------------|");
+    System.out.println("|   HJ   |  Honeydew Juice   |   RM 8.00  |               |");
+    System.out.println("|--------|-------------------|------------|---------------|");
+    System.out.println("|        |   [Minuman Lega]  |     Hot    |     Cold      |");
+    System.out.println("|--------|-------------------|------------|---=-----------|");
+    System.out.println("|   TC   |       Teh C       |   RM 4.50  |    RM 5.00    |");
+    System.out.println("|--------|-------------------|------------|---------------|");
+    System.out.println("|   LT   |     Lemon Tea     |   RM 4.50  |    RM 5.00    |");
+    System.out.println("+---------------------------------------------------------+");
+}
+    
+  }
