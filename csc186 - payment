@@ -1,0 +1,54 @@
+public class Payment {
+    private double total;
+    private double highestSale;
+    private double lowestSale;
+    private double totalSales;
+    private double amt;
+    private double change = 0.0;
+    private char opt;
+    private double tprice; // Added missing field
+    private int[] totalCust; // Added missing field
+
+    public Payment(double tprice, int[] totalCust) {
+        this.tprice = tprice;
+        this.totalCust = totalCust;
+    }
+    
+ private void updateSales() {
+        totalCust[0]++;
+        this.total = tprice;
+        if (this.total > this.highestSale) {
+            this.highestSale = this.total;
+        }
+        if (this.total < this.lowestSale || totalCust[0] == 1) {
+            this.lowestSale = this.total;
+        }
+        this.totalSales += tprice;
+    }
+ 
+    public String payByCash(double amt) {
+        this.amt = amt;
+        
+        if (amt < tprice) {
+            return "Money not enough to pay.";
+        } else {
+            if (amt > tprice) {
+                change = amt - tprice;
+               return "\nYou have RM" + change + " change.\nPlease go to counter to collect your change.";
+            } else {
+                return "\nNo change to collect.\n======================================================"; }
+            
+        }
+    }
+
+    public String payByCard() {
+        tprice = tprice - (tprice * 0.1); 
+       return "\nReceive 10% Discount\nTotal Price: RM"+ tprice +"\nRM"+ tprice +" has been deducted from your account.\n======================================================";
+    }
+
+  
+    public double getTotal() { return total; }
+    public double getHighestSale() { return highestSale; }
+    public double getLowestSale() { return lowestSale; }
+    public double getTotalSales() { return totalSales; }
+}
