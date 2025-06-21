@@ -3,8 +3,17 @@ import java.util.Scanner;
 public class MainApp{
     public static void main(){
         Scanner input = new Scanner(System.in);
-        int opt;
+        char key;
         
+        System.out.println("+--------------------------------+");
+        System.out.println("|   WELCOME TO CAFE KAPAL LAUD   |");
+        System.out.println("+--------------------------------+");
+        System.out.print("Press any key [Q] to continue: ");
+        key = input.next().charAt(0);
+        input.nextLine();
+        System.out.println("");
+        
+        int opt;
         do{
             System.out.println("+----------------+");
             System.out.println("|  1 | Admin     |");
@@ -13,9 +22,10 @@ public class MainApp{
             System.out.println("+----------------+");
             System.out.println("|  0 | Exit      |");
             System.out.println("+----------------+");
-            System.out.println("Choose option [1/2/0]: ");
+            System.out.print("Choose option [1/2/0]: ");
             opt = input.nextInt();
             input.nextLine();
+            System.out.println("");
         
             //Admin Section
             if (opt == 1){
@@ -25,31 +35,33 @@ public class MainApp{
                     input.nextLine();
                     System.out.print("Enter Admin Password: ");
                     String password = input.nextLine();
-            
-                    User user = new User (userID, password);
-            
+                
+                    Admin admin = new Admin(userID, password, "Elberthete");
 
-                    if (user.adminLogin()){
-                        System.out.println("Welcome Admin :)");
+                    if (admin.adminLogin()){
+                        System.out.println("\nWelcome Admin, " + admin.getAdminName() + " :)");
                         String choice;
                         do{
-                            System.out.println("\n+------------------------------+");
+                            System.out.println("+------------------------------+");
                             System.out.println("|    1   |   View  Sales       |");
                             System.out.println("|------------------------------|");
                             System.out.println("|    2   |   View Items Sold   |");
                             System.out.println("|------------------------------|");
                             System.out.println("|    M   |   Main Menu         |");
                             System.out.println("+------------------------------+");
-                            System.out.println("Enter option: ");
+                            System.out.print("Enter option: ");
                             choice = input.nextLine();
+                            System.out.println("");
                         
                             if (choice.equals("1")){
                                 System.out.println("view sales");
                                 //add code
+                                System.out.println("");
                             }
                             else if (choice.equals("2")){
                                 System.out.println("view items sold");
                                 //add code
+                                System.out.println("");
                             }
                             else if (choice.equalsIgnoreCase("M")){
                                 break;
@@ -80,6 +92,7 @@ public class MainApp{
                     System.out.println("+-------------+");
                     System.out.print("Choose option [1/2/B]: ");
                     choice = input.nextLine();
+                    System.out.println("");
             
                     if (choice.equals("1")){
                         System.out.print("Enter user ID (3 integer): ");
@@ -88,9 +101,30 @@ public class MainApp{
         
                         System.out.print("Enter password: ");
                         String password = input.nextLine();
+                        
+                        System.out.print("Enter your name: ");
+                        String custName = input.nextLine();
+                        
+                        System.out.print("Do you wanna register as our member?");
+                        System.out.print("\nPress 1 if YES | Press 2 if NO: ");
+                        int option = input.nextInt();
+                        input.nextLine();
+                        
+                        if(option == 1){
+                            boolean member = true;
+                            
+                            Customer membership = new Membership(userID, password, custName, member);
+                            membership.signUp();
+                            System.out.println("");
+                        }
+                        if(option == 2){
+                            boolean member = false;
+                            
+                            Customer regular = new Regular(userID, password, custName, member);
+                            regular.signUp();
+                            System.out.println("");
+                        }
         
-                        User user = new User(userID, password);
-                        user.signUp();
                     }
                     else if (choice.equals("2")){
                         boolean loginSuccess = false;
@@ -102,11 +136,21 @@ public class MainApp{
                             System.out.print("Enter password: ");
                             String password = input.nextLine();
         
-                            User user = new User(userID, password);
+                            boolean isMember = Customer.isMember(userID);
+                            Customer user;
+                            
+                            if(isMember){
+                                user = new Membership(userID, password, "", true);
+                            }
+                            else{
+                                user = new Regular(userID, password, "", false);
+                            }
                         
                             if (user.login()){
                                 System.out.println("Login successful!");
+                                System.out.println("Welcome, " + user.getCustName() + "!");
                                 loginSuccess = true;
+                                System.out.println("");
                                 
                                 //add code
                     
