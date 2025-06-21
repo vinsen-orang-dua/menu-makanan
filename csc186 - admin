@@ -1,1 +1,40 @@
+import java.util.Scanner;
 
+public class Admin {
+    public void Options() {
+        Scanner input = new Scanner(System.in);  
+        System.out.println("Welcome Admin :)");
+
+        String choice;
+        do {
+            System.out.println("\n+-------------------------------+");
+            System.out.println("|    1   |   View  Sales        |");
+            System.out.println("|-------------------------------|");
+            System.out.println("|    2   |   View Items Sold    |");
+            System.out.println("|-------------------------------|");
+            System.out.println("|    3   |   Edit Items         |");
+            System.out.println("+-------------------------------+");
+            System.out.println("|    M   |   Main Menu          |");
+            System.out.println("+-------------------------------+");
+            System.out.print("Enter option: ");
+
+            choice = input.nextLine();
+
+            if (choice.equals("1")) {
+                System.out.println("view sales");
+                // add code
+            } else if (choice.equals("2")) {
+                System.out.println("view items sold");
+                // add code
+            } else if (choice.equals("3")) {
+                System.out.println("Change Items Pricing/Availability");
+                // add code
+            } else if (choice.equalsIgnoreCase("M")) {
+                break;
+            } else {
+                System.out.println("Invalid option. Please try again.");
+            }
+
+        } while (!choice.equalsIgnoreCase("M"));
+    }
+}
