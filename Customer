@@ -1,0 +1,41 @@
+import java.io.*;
+import java.util.StringTokenizer;
+
+public abstract class Customer extends User{
+   protected String custName;
+   
+   public Customer(int userID, String password, String custName){
+       super(userID, password);
+       this.custName = custName;
+   }
+   public abstract void signUp();
+   public abstract boolean login();
+   public abstract boolean userExists();
+   public String getCustName(){
+       return custName;
+   }
+   //to determine whether a user is a member (Membership) or not (Regular) before creating the correct object for login. 
+   public static boolean isMember(int userID){
+       try{
+           BufferedReader br = new BufferedReader(new FileReader ("Customer.txt"));
+           String line;
+           while((line = br.readLine()) != null){
+               StringTokenizer st = new StringTokenizer(line, ",");
+               int savedUserID = Integer.parseInt(st.nextToken());
+               st.nextToken();//skip password
+               st.nextToken();//skip name
+               boolean member = Boolean.parseBoolean(st.nextToken());
+               
+               if(savedUserID == userID){
+                   br.close();
+                   return member;
+               }
+           }
+           br.close();
+       }
+       catch(IOException e){
+           System.out.println("Error reading from file: " + e.getMessage());
+       }
+       return false;
+   }
+}
